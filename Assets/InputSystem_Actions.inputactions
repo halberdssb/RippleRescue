@@ -16,10 +16,19 @@
                     "initialStateCheck": true
                 },
                 {
+                    "name": "TouchDelta",
+                    "type": "Value",
+                    "id": "b9025970-3d93-4724-8476-4d6212e28b2c",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
                     "name": "TouchPressed",
                     "type": "Value",
                     "id": "4a1f6417-4403-4b89-a81b-933fa401d2ca",
-                    "expectedControlType": "Digital",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
@@ -91,6 +100,17 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
+                    "action": "TouchPressed",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "14e46359-8782-4e33-a738-1e734afd9c87",
+                    "path": "<Touchscreen>/Press",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
                     "action": "TouchPressed",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -213,6 +233,28 @@
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
                     "action": "ToggleControlsDisplay",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a0c06606-ebeb-4351-9ab4-bd69f9761cb5",
+                    "path": "<Touchscreen>/delta",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Touch",
+                    "action": "TouchDelta",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "69f54d6a-b6f1-4460-a66f-ca543af8402e",
+                    "path": "<Mouse>/delta",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "TouchDelta",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

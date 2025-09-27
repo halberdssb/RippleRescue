@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7411675535242134533}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -92,6 +92,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2d81c0c04949f141a5f4d202ce00144, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LineDrawer
+  startDeactivated: 0
   line: {fileID: 8574401335631270802}
   startDrawDistance: 1
   distanceBetweenPoints: 0.1

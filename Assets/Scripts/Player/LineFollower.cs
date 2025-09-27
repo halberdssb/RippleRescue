@@ -13,9 +13,13 @@ public class LineFollower : MonoBehaviour
     [SerializeField] 
     private float moveSpeed;
 
+    [SerializeField] 
+    private LayerMask obstacleLayerMask;
+
     private LineDrawer _lineDrawer;
     
     private Tween _moveTween;
+    private Tween _turnTween;
     private Vector3[] _currentLinePoints;
     private int _nextPointIndex;
 
@@ -58,6 +62,16 @@ public class LineFollower : MonoBehaviour
         };
         
         // rotate to next movement position
-        transform.DOLookAt(destination, tweenTime);
+        _turnTween = transform.DOLookAt(destination, tweenTime);
+    }
+    
+    // Stop moving if an obstacle is hit
+    private void OnCollisionEnter(Collision collision)
+    {
+        // Check if is obstacle
+        if ((obstacleLayerMask & (1 << collision.collider.gameObject.layer)) != 0)
+        {
+            
+        }
     }
 }

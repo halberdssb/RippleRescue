@@ -10,6 +10,7 @@ using UnityEngine;
 
 public class LineDrawer : MonoBehaviour
 {
+   
     private PlayerControls _controls;
 
     [SerializeField]
@@ -31,6 +32,7 @@ public class LineDrawer : MonoBehaviour
     private LayerMask raycastLayerMask;
 
     private bool _drawingLine;
+    private bool _lineDrawingEnabled;
     
     private float _maxRaycastDistance = 100f;
     private float _distanceDraggedSinceLastPoint;
@@ -99,6 +101,12 @@ public class LineDrawer : MonoBehaviour
                 ResetTouchDelta();
             }
         }
+    }
+    
+    // Enables/disables ability to draw lines
+    public void SetLineDrawerActive(bool active)
+    {
+        _lineDrawingEnabled = active;
     }
     
     // Checks if the player is touching within start draw distance to the player

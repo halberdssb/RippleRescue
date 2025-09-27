@@ -65,6 +65,8 @@ public class LineDrawer : MonoBehaviour
 
     void Update()
     {
+        if (!_lineDrawingEnabled) return;
+        
         // Start drawing if touch near ship and no line has been drawn yet
         if (_controls.TouchPressed && !_drawingLine && IsTouchWithinStartDrawRange() && !HasLineBeenDrawn())
         {

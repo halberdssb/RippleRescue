@@ -1,6 +1,8 @@
 using System;
 using DG.Tweening;
+using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 /*
  * Handles game start and end states
@@ -15,7 +17,11 @@ public class GameManager : MonoBehaviour
     [Space]
     [SerializeField] private CanvasGroup playerHUD;
     [SerializeField] private CanvasGroup startScreen;
+    [SerializeField] private CanvasGroup endScreen;
     [SerializeField] private LineDrawer playerLineDrawer;
+    [SerializeField] private TextMeshProUGUI resultsText;
+
+    private LineFollower playerLineFollower;
 
     private Collectible[] levelCollectibles;
     private int numCollectiblesCollected;
@@ -24,14 +30,16 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        playerLineFollower = playerLineDrawer.GetComponent<LineFollower>();
+        
         // Turn player off if set to
         if (startPlayerInactive)
         {
-        playerLineDrawer.SetLineDrawerActive(false);
+            playerLineDrawer.SetLineDrawerActive(false);
         }
         
         // Find and subscribe to all collectible collected events
-        levelCollectibles = FindObjectsOfType<Collectible>();
+        levelCollectibles = FindObjectsByType<Collectible>(FindObjectsSortMode.None);
         foreach (Collectible collectible in levelCollectibles)
         {
             collectible.OnCollected += OnCollectibleCollected;
@@ -40,6 +48,10 @@ public class GameManager : MonoBehaviour
         // Turn start screen canvas on and turn player hud off
         SetCanvasGroupActive(startScreen, true);
         SetCanvasGroupActive(playerHUD, false);
+        SetCanvasGroupActive(endScreen, false);
+        
+        // subscribe to player end follow line state
+        playerLineFollower.OnFinishedFollowingLine += EndGame;
     }
     // Transitions from start screen to gameplay
     public void StartGame()
@@ -79,5 +91,27 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log("game done!");
         }
+    }
+    
+    // Fades out game hud and fades in end screen
+    public void EndGame()
+    {
+        UpdateResultsText();
+        playerLineDrawer.SetLineDrawerActive(false);
+        FadeCanvasGroup(playerHUD, false, () =>
+            FadeCanvasGroup(endScreen, true));
+    }
+    
+    // Updates the results text with player's score
+    private void UpdateResultsText()
+    {
+        string results = "Collected " + numCollectiblesCollected + " out of " + levelCollectibles.Length + " collectibles!";
+        resultsText.text = results;
+    }
+    
+    // Reloads the scene for game restart
+    public void RestartGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

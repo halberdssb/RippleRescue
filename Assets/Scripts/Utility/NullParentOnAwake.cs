@@ -11,6 +11,6 @@ public class NullParentOnAwake : MonoBehaviour
 {
     private void Awake()
     {
-        transform.parent = null;
+        transform.SetParent(null, true);
     }
 }

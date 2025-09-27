@@ -16,6 +16,9 @@ public class LineFollower : MonoBehaviour
     [SerializeField] 
     private LayerMask obstacleLayerMask;
 
+    public delegate void FinishedFollowingLineDelegate();
+    public FinishedFollowingLineDelegate OnFinishedFollowingLine;
+    
     private LineDrawer _lineDrawer;
     
     private Tween _moveTween;
@@ -52,14 +55,19 @@ public class LineFollower : MonoBehaviour
         _moveTween.SetEase(Ease.Linear);
         
         // cue move to next point if there is one on tween complete
-        _moveTween.onComplete += () =>
+        if (_nextPointIndex + 1 < _currentLinePoints.Length)
         {
-            if (_nextPointIndex < _currentLinePoints.Length)
+            _moveTween.onComplete += () =>
             {
                 _nextPointIndex++;
                 MoveToNextPointLooping(_currentLinePoints[_nextPointIndex]);
-            }
-        };
+            };
+        }
+        // otherwise line is done moving - check game state
+        else
+        {
+            OnFinishedFollowingLine?.Invoke();
+        }
         
         // rotate to next movement position
         _turnTween = transform.DOLookAt(destination, tweenTime);
@@ -68,10 +76,19 @@ public class LineFollower : MonoBehaviour
     // Stop moving if an obstacle is hit
     private void OnCollisionEnter(Collision collision)
     {
+        Debug.Log(collision.gameObject.layer);
         // Check if is obstacle
         if ((obstacleLayerMask & (1 << collision.collider.gameObject.layer)) != 0)
         {
-            
+            StopFollowingLine();
         }
+    }
+    
+    // Stops all movement
+    private void StopFollowingLine()
+    {
+        _moveTween.Kill();
+        _turnTween.Kill();
+        OnFinishedFollowingLine?.Invoke();
     }
 }

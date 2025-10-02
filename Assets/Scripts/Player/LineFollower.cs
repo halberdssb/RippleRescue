@@ -29,6 +29,10 @@ public class LineFollower : MonoBehaviour
     private void Start()
     {
         _lineDrawer = GetComponent<LineDrawer>();
+
+        // subscribe movement to water drain start
+        WaterDrain.OnWaterStartDraining += MoveAlongLineToEnd;
+        WaterDrain.OnWaterDrained -= MoveAlongLineToEnd;
     }
     
     // Begins set movement along a line through all points
@@ -47,6 +51,7 @@ public class LineFollower : MonoBehaviour
     // Starts a tween to move toward the next point at a constant speed and cues movement to next point on tween complete
     private void MoveToNextPointLooping(Vector3 destination)
     {
+        Debug.Log("looping");
         Vector3 distanceVectorToDestination = destination - transform.position;
         
         // start moving to next point

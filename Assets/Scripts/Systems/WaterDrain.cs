@@ -11,14 +11,16 @@ using UnityEngine.UI;
 
 public class WaterDrain : MonoBehaviour
 {
+    public static WaterDrain Instance;
+    
     [Tooltip("Total time until the water drains.")]
-    public static float DrainTime = 5;
+    public float DrainTime = 5;
 
     public delegate void WaterStartDrainingDelegate();
-    public static WaterStartDrainingDelegate OnWaterStartDraining;
+    public WaterStartDrainingDelegate OnWaterStartDraining;
 
     public delegate void WaterDrainedDelegate();
-    public static WaterDrainedDelegate OnWaterDrained;
+    public WaterDrainedDelegate OnWaterDrained;
 
     [SerializeField]
     [Tooltip("The end position that the water plane will tween down to - only Y position is used.")]
@@ -33,6 +35,15 @@ public class WaterDrain : MonoBehaviour
     private float _endDrainYPosition;
 
 
+    void Awake()
+    {
+        if (Instance != this)
+        {
+            Destroy(Instance);
+        }
+        
+        Instance = this;
+    }
     void Start()
     {
         _startWaterYPosition = transform.position.y;

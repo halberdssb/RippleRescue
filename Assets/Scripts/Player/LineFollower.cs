@@ -31,8 +31,8 @@ public class LineFollower : MonoBehaviour
         _lineDrawer = GetComponent<LineDrawer>();
 
         // subscribe movement to water drain start
-        WaterDrain.OnWaterStartDraining += MoveAlongLineToEnd;
-        WaterDrain.OnWaterDrained -= MoveAlongLineToEnd;
+        WaterDrain.Instance.OnWaterStartDraining += MoveAlongLineToEnd;
+        WaterDrain.Instance.OnWaterDrained -= () => WaterDrain.Instance.OnWaterStartDraining -= MoveAlongLineToEnd;
     }
     
     // Begins set movement along a line through all points
@@ -51,7 +51,6 @@ public class LineFollower : MonoBehaviour
     // Starts a tween to move toward the next point at a constant speed and cues movement to next point on tween complete
     private void MoveToNextPointLooping(Vector3 destination)
     {
-        Debug.Log("looping");
         Vector3 distanceVectorToDestination = destination - transform.position;
         
         // start moving to next point
@@ -81,7 +80,6 @@ public class LineFollower : MonoBehaviour
     // Stop moving if an obstacle is hit
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log(collision.gameObject.layer);
         // Check if is obstacle
         if ((obstacleLayerMask & (1 << collision.collider.gameObject.layer)) != 0)
         {

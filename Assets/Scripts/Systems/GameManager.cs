@@ -51,7 +51,7 @@ public class GameManager : MonoBehaviour
         SetCanvasGroupActive(endScreen, false);
         
         // subscribe to player end follow line state
-        WaterDrain.OnWaterDrained += EndGame;
+        WaterDrain.Instance.OnWaterDrained += EndGame;
     }
     // Transitions from start screen to gameplay
     public void StartGame()

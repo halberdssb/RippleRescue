@@ -13,9 +13,11 @@ GameObject:
   - component: {fileID: 7331332633641620816}
   - component: {fileID: 6479506702079062013}
   - component: {fileID: 7411675535242134533}
-  m_Layer: 0
+  - component: {fileID: 903327241131864702}
+  - component: {fileID: 3060576265913980624}
+  m_Layer: 8
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -94,8 +96,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LineDrawer
   line: {fileID: 8574401335631270802}
   startDrawDistance: 1
-  distanceBetweenPoints: 0.1
-  maxLineDistance: 30
+  distanceBetweenPoints: 0.3
+  maxLineDistance: 40
   waterPlane: {fileID: 0}
   raycastLayerMask:
     serializedVersion: 2
@@ -113,6 +115,59 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LineFollower
   moveSpeed: 5
+  obstacleLayerMask:
+    serializedVersion: 2
+    m_Bits: 64
+--- !u!136 &903327241131864702
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1731489949910904846}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.6
+  m_Height: 3.05
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &3060576265913980624
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1731489949910904846}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!1 &2435445071276105197
 GameObject:
   m_ObjectHideFlags: 0
@@ -124,7 +179,7 @@ GameObject:
   - component: {fileID: 3660984687539733760}
   - component: {fileID: 8574401335631270802}
   - component: {fileID: 3067364507142909139}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Line
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -334,6 +389,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BoatModel
       objectReference: {fileID: 0}
+    - target: {fileID: 7495480193906451452, guid: f89bbfa58e5e27b4d873fb5a6b191f83, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -371,6 +430,26 @@ PrefabInstance:
     - target: {fileID: 3262971660050073286, guid: 973ac4c092c9a4d4a9cc31a954c8cab2, type: 3}
       propertyPath: m_Name
       value: HUD
+      objectReference: {fileID: 0}
+    - target: {fileID: 3262971660050073286, guid: 973ac4c092c9a4d4a9cc31a954c8cab2, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4600923645937077964, guid: 973ac4c092c9a4d4a9cc31a954c8cab2, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4974214650029499685, guid: 973ac4c092c9a4d4a9cc31a954c8cab2, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5034475052349751329, guid: 973ac4c092c9a4d4a9cc31a954c8cab2, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6904760640492005740, guid: 973ac4c092c9a4d4a9cc31a954c8cab2, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8317194797750019873, guid: 973ac4c092c9a4d4a9cc31a954c8cab2, type: 3}
       propertyPath: m_Pivot.x

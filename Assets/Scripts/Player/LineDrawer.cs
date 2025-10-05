@@ -10,6 +10,7 @@ using UnityEngine;
 
 public class LineDrawer : MonoBehaviour
 {
+   
     private PlayerControls _controls;
 
     [SerializeField]
@@ -22,6 +23,8 @@ public class LineDrawer : MonoBehaviour
     [SerializeField]
     private float distanceBetweenPoints;
     [SerializeField]
+    private float boatMoveSpeed;
+
     private float maxLineDistance;
 
     [SerializeField]
@@ -31,6 +34,7 @@ public class LineDrawer : MonoBehaviour
     private LayerMask raycastLayerMask;
 
     private bool _drawingLine;
+    private bool _lineDrawingEnabled;
     
     private float _maxRaycastDistance = 100f;
     private float _distanceDraggedSinceLastPoint;
@@ -59,10 +63,14 @@ public class LineDrawer : MonoBehaviour
         
         // set to position on default because first point will always be on top of player
         _worldSpaceTouchLastFrame = transform.position;
+
+        maxLineDistance = boatMoveSpeed * WaterDrain.Instance.DrainTime;
     }
 
     void Update()
     {
+        if (!_lineDrawingEnabled) return;
+        
         // Start drawing if touch near ship and no line has been drawn yet
         if (_controls.TouchPressed && !_drawingLine && IsTouchWithinStartDrawRange() && !HasLineBeenDrawn())
         {
@@ -99,6 +107,12 @@ public class LineDrawer : MonoBehaviour
                 ResetTouchDelta();
             }
         }
+    }
+    
+    // Enables/disables ability to draw lines
+    public void SetLineDrawerActive(bool active)
+    {
+        _lineDrawingEnabled = active;
     }
     
     // Checks if the player is touching within start draw distance to the player
@@ -182,6 +196,10 @@ public class LineDrawer : MonoBehaviour
         }
         
         // update line renderer points
+        if (!line.useWorldSpace)
+        {
+            pointToAdd -= line.transform.position;
+        }
         _linePoints.Add(pointToAdd);
         line.positionCount = _linePoints.Count;
         line.SetPositions(_linePoints.ToArray());

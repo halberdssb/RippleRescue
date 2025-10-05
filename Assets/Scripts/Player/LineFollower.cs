@@ -13,15 +13,26 @@ public class LineFollower : MonoBehaviour
     [SerializeField] 
     private float moveSpeed;
 
+    [SerializeField] 
+    private LayerMask obstacleLayerMask;
+
+    public delegate void FinishedFollowingLineDelegate();
+    public FinishedFollowingLineDelegate OnFinishedFollowingLine;
+    
     private LineDrawer _lineDrawer;
     
     private Tween _moveTween;
+    private Tween _turnTween;
     private Vector3[] _currentLinePoints;
     private int _nextPointIndex;
 
     private void Start()
     {
         _lineDrawer = GetComponent<LineDrawer>();
+
+        // subscribe movement to water drain start
+        WaterDrain.Instance.OnWaterStartDraining += MoveAlongLineToEnd;
+        WaterDrain.Instance.OnWaterDrained -= () => WaterDrain.Instance.OnWaterStartDraining -= MoveAlongLineToEnd;
     }
     
     // Begins set movement along a line through all points
@@ -48,16 +59,39 @@ public class LineFollower : MonoBehaviour
         _moveTween.SetEase(Ease.Linear);
         
         // cue move to next point if there is one on tween complete
-        _moveTween.onComplete += () =>
+        if (_nextPointIndex + 1 < _currentLinePoints.Length)
         {
-            if (_nextPointIndex < _currentLinePoints.Length)
+            _moveTween.onComplete += () =>
             {
                 _nextPointIndex++;
                 MoveToNextPointLooping(_currentLinePoints[_nextPointIndex]);
-            }
-        };
+            };
+        }
+        // otherwise line is done moving - check game state
+        else
+        {
+            OnFinishedFollowingLine?.Invoke();
+        }
         
         // rotate to next movement position
-        transform.DOLookAt(destination, tweenTime);
+        _turnTween = transform.DOLookAt(destination, tweenTime);
+    }
+    
+    // Stop moving if an obstacle is hit
+    private void OnCollisionEnter(Collision collision)
+    {
+        // Check if is obstacle
+        if ((obstacleLayerMask & (1 << collision.collider.gameObject.layer)) != 0)
+        {
+            StopFollowingLine();
+        }
+    }
+    
+    // Stops all movement
+    private void StopFollowingLine()
+    {
+        _moveTween.Kill();
+        _turnTween.Kill();
+        OnFinishedFollowingLine?.Invoke();
     }
 }

@@ -59,6 +59,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3291613542826325140}
     m_Modifications:
+    - target: {fileID: 4208235501557621376, guid: dd402cff338c75a42b144d408ef5584e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 3821538875661643808}
+    - target: {fileID: 4208235501557621376, guid: dd402cff338c75a42b144d408ef5584e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: RestartGame
+      objectReference: {fileID: 0}
     - target: {fileID: 7326746167440797121, guid: dd402cff338c75a42b144d408ef5584e, type: 3}
       propertyPath: m_Pivot.x
       value: 0

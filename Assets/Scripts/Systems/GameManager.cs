@@ -28,6 +28,15 @@ public class GameManager : MonoBehaviour
     
     private float fadeTime = 0.8f;
 
+    private string[] puzzleLevelNames = new string[]
+    {
+        "Easy1Final",
+        "Easy2Final",
+        "Easy3Final",
+        "Easy4Final",
+        "Easy5Final",
+    };
+
     private void Start()
     {
         playerLineFollower = playerLineDrawer.GetComponent<LineFollower>();
@@ -113,5 +122,11 @@ public class GameManager : MonoBehaviour
     public void RestartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+    
+    // Loads a specified puzzle based on index - only used for early builds without menu's/level transitions
+    public void LoadPuzzleNumber(int puzzleNumber)
+    {
+        SceneManager.LoadScene(puzzleLevelNames[puzzleNumber - 1]);
     }
 }

@@ -25,10 +25,7 @@ public class WaterDrain : MonoBehaviour
     [SerializeField]
     [Tooltip("The end position that the water plane will tween down to - only Y position is used.")]
     private Transform waterPlaneEndPosition;
-
-    [SerializeField]
-    private Slider waterDrainSlider;
-
+    
     private bool _waterDraining;
     private Tween _waterTween;
     private float _startWaterYPosition;
@@ -50,14 +47,6 @@ public class WaterDrain : MonoBehaviour
         _endDrainYPosition = waterPlaneEndPosition.position.y;
     }
 
-    void Update()
-    {
-        if (_waterDraining)
-        {
-            UpdateWaterDrainSlider();
-        }
-    }
-
     // Starts the water drain tween
     public void StartWaterDrain()
     {
@@ -76,11 +65,11 @@ public class WaterDrain : MonoBehaviour
             OnWaterDrained?.Invoke();
         };
     }
-
-    // Sets the water drain slider to reflect water plane level
-    private void UpdateWaterDrainSlider()
+    
+    // returns the 0-1 value of the water position as it drains (1 is full, 0 is drained)
+    public float GetWaterDrainPercentage()
     {
-        waterDrainSlider.value = Mathf.InverseLerp(_endDrainYPosition, _startWaterYPosition, transform.position.y);
+        return Mathf.InverseLerp(_endDrainYPosition, _startWaterYPosition, transform.position.y);
     }
 
     // Updates the drain end position to the current position of the plane

@@ -23,6 +23,8 @@ public class LineDrawer : MonoBehaviour
     [SerializeField]
     private float distanceBetweenPoints;
     [SerializeField]
+    private float boatMoveSpeed;
+
     private float maxLineDistance;
 
     [SerializeField]
@@ -61,6 +63,8 @@ public class LineDrawer : MonoBehaviour
         
         // set to position on default because first point will always be on top of player
         _worldSpaceTouchLastFrame = transform.position;
+
+        maxLineDistance = boatMoveSpeed * WaterDrain.Instance.DrainTime;
     }
 
     void Update()
@@ -192,6 +196,10 @@ public class LineDrawer : MonoBehaviour
         }
         
         // update line renderer points
+        if (!line.useWorldSpace)
+        {
+            pointToAdd -= line.transform.position;
+        }
         _linePoints.Add(pointToAdd);
         line.positionCount = _linePoints.Count;
         line.SetPositions(_linePoints.ToArray());

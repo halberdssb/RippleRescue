@@ -119,6 +119,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &88314098 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1731489949910904846, guid: 7dbe492f1d0087a41818f19aa21ac282, type: 3}
+  m_PrefabInstance: {fileID: 6825045726209330739}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &110066006
 GameObject:
   m_ObjectHideFlags: 0
@@ -299,12 +304,24 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6479506702079062013, guid: 7dbe492f1d0087a41818f19aa21ac282, type: 3}
   m_PrefabInstance: {fileID: 6825045726209330739}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 88314098}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c2d81c0c04949f141a5f4d202ce00144, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LineDrawer
+--- !u!114 &423451829
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 88314098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48948dfe9d76b07488dacd46a7955fa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Animation.Rigging::UnityEngine.Animations.Rigging.RigTransform
 --- !u!1 &712484750
 GameObject:
   m_ObjectHideFlags: 0
@@ -890,7 +907,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1731489949910904846, guid: 7dbe492f1d0087a41818f19aa21ac282, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 423451829}
   m_SourcePrefab: {fileID: 100100000, guid: 7dbe492f1d0087a41818f19aa21ac282, type: 3}
 --- !u!225 &6825045726209330742 stripped
 CanvasGroup:

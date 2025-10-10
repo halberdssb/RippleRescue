@@ -6,25 +6,25 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 0
-    path: Assets/Scenes/SampleScene.unity
+    path: Assets/Scenes/MenuScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 0
-    path: Assets/Scenes/MovementTestScene.unity
+    path: Assets/Scenes/Test Scenes/MovementTestScene.unity
     guid: 18b26d12415166f4f83395ee08533fd4
   - enabled: 1
-    path: Assets/Scenes/Easy1Final.unity
+    path: Assets/Scenes/Puzzle Levels/Levels (FInal)/Easy1Final.unity
     guid: d3c53e93ba77d2e419b18d4700568bb4
   - enabled: 1
-    path: Assets/Scenes/Easy2Final.unity
+    path: Assets/Scenes/Puzzle Levels/Levels (FInal)/Easy2Final.unity
     guid: 25c34e8bb569c8743873e9fc398dc5ae
   - enabled: 1
-    path: Assets/Scenes/Easy3Final.unity
+    path: Assets/Scenes/Puzzle Levels/Levels (FInal)/Easy3Final.unity
     guid: c7f2df6af2dd1ad4ebcb83d464424a58
   - enabled: 1
-    path: Assets/Scenes/Easy4Final.unity
+    path: Assets/Scenes/Puzzle Levels/Levels (FInal)/Easy4Final.unity
     guid: 0cfed5dccd7c60446a4b131009ff2326
   - enabled: 1
-    path: Assets/Scenes/Easy5Final.unity
+    path: Assets/Scenes/Puzzle Levels/Levels (FInal)/Easy5Final.unity
     guid: fdbb63ecd325fb14f9bac3b1777e389e
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}

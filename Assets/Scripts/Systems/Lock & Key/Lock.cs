@@ -1,3 +1,4 @@
+using DG.Tweening;
 using UnityEngine;
 
 /*
@@ -7,8 +8,20 @@ using UnityEngine;
  * 10.9.25
  */
 
+[RequireComponent(typeof(AudioSource))]
 public class Lock : MonoBehaviour, ICollisionEvent
 {
+    private BoxCollider collider;
+    private float unlockTweenTime = 1f;
+    private float unlockTweenYOffset = -1f;
+    
+    private AudioSource unlockSound;
+
+    private void Awake()
+    {
+        collider = GetComponent<BoxCollider>();
+        unlockSound = GetComponent<AudioSource>();
+    }
     // On collision with player, try look for key and unlock/turn off lock if they have one
     public void OnCollisionEvent(GameObject player, out bool stopMovement)
     {
@@ -22,7 +35,11 @@ public class Lock : MonoBehaviour, ICollisionEvent
             if (playerInventory.TryGetItemTypeFromInventory(out Key key))
             {
                 key.gameObject.SetActive(false);
-                gameObject.SetActive(false);
+                
+                // turn off lock and tween away
+                DisableAndHideLock();
+                // play unlock sound
+                unlockSound.Play();
             
                 stopMovement = false;   
             }
@@ -32,5 +49,13 @@ public class Lock : MonoBehaviour, ICollisionEvent
         {
             Debug.LogError("Player does not have inventory component accessible to " + name + " for collision event.", this);
         }
+    }
+    
+    // Disables lock collision and tweens it below water to hide it when unlocked
+    private void DisableAndHideLock()
+    {
+        collider.enabled = false;
+        Vector3 moveTweenPosition = transform.position;
+        transform.DOMoveY(moveTweenPosition.y + unlockTweenYOffset, unlockTweenTime);
     }
 }

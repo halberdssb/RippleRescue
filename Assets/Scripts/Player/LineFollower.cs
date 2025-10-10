@@ -16,6 +16,8 @@ public class LineFollower : MonoBehaviour
     [SerializeField] 
     private LayerMask obstacleLayerMask;
 
+    [SerializeField] private AudioSource collisionStopSound;
+
     public delegate void FinishedFollowingLineDelegate();
     public FinishedFollowingLineDelegate OnFinishedFollowingLine;
     
@@ -94,6 +96,7 @@ public class LineFollower : MonoBehaviour
             // stop movement
             if (stopMovement)
             {
+                collisionStopSound.Play();
                 StopFollowingLine();
             }
         }

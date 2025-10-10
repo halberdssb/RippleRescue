@@ -7,18 +7,16 @@ using UnityEngine;
  * 10.9.25
  */
 
+[RequireComponent(typeof(AudioSource))]
 public class Key : CollectibleItem
 {
-    void Start()
-    {
-        
-    }
+    private AudioSource collectKeySound;
 
-    void Update()
+    private void Awake()
     {
-        
+        collectKeySound = GetComponent<AudioSource>();
     }
-
+    
     // When collected, add to inventory and move to position on player model
     protected override void CollectItem(ItemInventory playerInventory)
     {
@@ -28,5 +26,8 @@ public class Key : CollectibleItem
         transform.SetParent(playerInventory.keyDisplayPosition);
         transform.position = playerInventory.keyDisplayPosition.position;
         transform.rotation = playerInventory.keyDisplayPosition.rotation;
+        
+        // play collected sound
+        collectKeySound.Play();
     }
 }

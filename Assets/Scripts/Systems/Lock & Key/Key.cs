@@ -18,4 +18,15 @@ public class Key : CollectibleItem
     {
         
     }
+
+    // When collected, add to inventory and move to position on player model
+    protected override void CollectItem(ItemInventory playerInventory)
+    {
+        base.CollectItem(playerInventory);
+        
+        // move key to position on player
+        transform.SetParent(playerInventory.keyDisplayPosition);
+        transform.position = playerInventory.keyDisplayPosition.position;
+        transform.rotation = playerInventory.keyDisplayPosition.rotation;
+    }
 }

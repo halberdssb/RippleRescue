@@ -83,7 +83,19 @@ public class LineFollower : MonoBehaviour
         // Check if is obstacle
         if ((obstacleLayerMask & (1 << collision.collider.gameObject.layer)) != 0)
         {
-            StopFollowingLine();
+            bool stopMovement = true;
+            
+            // fire collision event if it exists
+            if (collision.collider.gameObject.TryGetComponent(out ICollisionEvent collisionEvent))
+            {
+                collisionEvent.OnCollisionEvent(gameObject, out stopMovement);
+            }
+            
+            // stop movement
+            if (stopMovement)
+            {
+                StopFollowingLine();
+            }
         }
     }
     

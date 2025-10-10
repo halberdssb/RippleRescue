@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
 
     private LineFollower playerLineFollower;
 
-    private Collectible[] levelCollectibles;
+    private LevelCompletionCollectible[] levelCollectibles;
     private int numCollectiblesCollected;
     
     private float fadeTime = 0.8f;
@@ -48,8 +48,8 @@ public class GameManager : MonoBehaviour
         }
         
         // Find and subscribe to all collectible collected events
-        levelCollectibles = FindObjectsByType<Collectible>(FindObjectsSortMode.None);
-        foreach (Collectible collectible in levelCollectibles)
+        levelCollectibles = FindObjectsByType<LevelCompletionCollectible>(FindObjectsSortMode.None);
+        foreach (LevelCompletionCollectible collectible in levelCollectibles)
         {
             collectible.OnCollected += OnCollectibleCollected;
         }

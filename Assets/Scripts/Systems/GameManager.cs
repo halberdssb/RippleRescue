@@ -20,10 +20,12 @@ public class GameManager : MonoBehaviour
     [SerializeField] private CanvasGroup endScreen;
     [SerializeField] private LineDrawer playerLineDrawer;
     [SerializeField] private TextMeshProUGUI resultsText;
+    [SerializeField] private AudioSource music;
+    [SerializeField] private AudioSource waterDrainSound;
 
     private LineFollower playerLineFollower;
 
-    private Collectible[] levelCollectibles;
+    private LevelCompletionCollectible[] levelCollectibles;
     private int numCollectiblesCollected;
     
     private float fadeTime = 0.8f;
@@ -48,8 +50,8 @@ public class GameManager : MonoBehaviour
         }
         
         // Find and subscribe to all collectible collected events
-        levelCollectibles = FindObjectsByType<Collectible>(FindObjectsSortMode.None);
-        foreach (Collectible collectible in levelCollectibles)
+        levelCollectibles = FindObjectsByType<LevelCompletionCollectible>(FindObjectsSortMode.None);
+        foreach (LevelCompletionCollectible collectible in levelCollectibles)
         {
             collectible.OnCollected += OnCollectibleCollected;
         }
@@ -61,6 +63,10 @@ public class GameManager : MonoBehaviour
         
         // Subscribe to player end follow line state
         WaterDrain.Instance.OnWaterDrained += EndGame;
+        
+        // Subscribe water drain sounds to water drain
+        WaterDrain.Instance.OnWaterStartDraining += () => waterDrainSound.Play();
+        WaterDrain.Instance.OnWaterDrained += () => waterDrainSound.DOFade(0, 0.5f);
     }
     // Transitions from start screen to gameplay
     public void StartGame()
@@ -69,6 +75,9 @@ public class GameManager : MonoBehaviour
         FadeCanvasGroup(startScreen, false, () => 
             FadeCanvasGroup(playerHUD, true, () => 
                 playerLineDrawer.SetLineDrawerActive(true)));
+        
+        // start music
+        music.Play();
     }
 
     // Fades a canvas group in or out

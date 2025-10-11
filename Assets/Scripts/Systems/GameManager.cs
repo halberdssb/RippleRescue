@@ -37,6 +37,11 @@ public class GameManager : MonoBehaviour
         "Easy3Final",
         "Easy4Final",
         "Easy5Final",
+        "Med1Final",
+        "Med2Final",
+        "Med3Final",
+        "Med4Final",
+        "Med5Final"
     };
 
     private void Start()
@@ -99,6 +104,18 @@ public class GameManager : MonoBehaviour
         canvasGroup.interactable = active;
         canvasGroup.blocksRaycasts = active;
         canvasGroup.alpha = active? 1 : 0;
+    }
+    
+    // activates a canvas group
+    public void ActiveCanvasGroup(CanvasGroup canvasGroup)
+    {
+        SetCanvasGroupActive(canvasGroup, true);
+    }
+    
+    // deactivates a canvas group
+    public void DeactiveCanvasGroup(CanvasGroup canvasGroup)
+    {
+        SetCanvasGroupActive(canvasGroup, false);
     }
     
     // Increments collectibles collected and checks if the game is over

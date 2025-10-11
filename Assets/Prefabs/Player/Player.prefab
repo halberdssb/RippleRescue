@@ -36,7 +36,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 6316619860161444596}
+  - {fileID: 5570399840209197224}
   - {fileID: 3660984687539733760}
   - {fileID: 1945241089100154479}
   - {fileID: 1650856846047842222}
@@ -610,7 +610,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 7006728517138308276}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &3812226034308006834
+--- !u!1001 &611971850182583310
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -618,67 +618,59 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7006728517138308276}
     m_Modifications:
-    - target: {fileID: 7155827465052846406, guid: f89bbfa58e5e27b4d873fb5a6b191f83, type: 3}
+    - target: {fileID: 4985519988818590886, guid: 14bb194fba89c3147aadfe5b156f2f3b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7155827465052846406, guid: f89bbfa58e5e27b4d873fb5a6b191f83, type: 3}
+    - target: {fileID: 4985519988818590886, guid: 14bb194fba89c3147aadfe5b156f2f3b, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7155827465052846406, guid: f89bbfa58e5e27b4d873fb5a6b191f83, type: 3}
+    - target: {fileID: 4985519988818590886, guid: 14bb194fba89c3147aadfe5b156f2f3b, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7155827465052846406, guid: f89bbfa58e5e27b4d873fb5a6b191f83, type: 3}
+    - target: {fileID: 4985519988818590886, guid: 14bb194fba89c3147aadfe5b156f2f3b, type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 7155827465052846406, guid: f89bbfa58e5e27b4d873fb5a6b191f83, type: 3}
+    - target: {fileID: 4985519988818590886, guid: 14bb194fba89c3147aadfe5b156f2f3b, type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7155827465052846406, guid: f89bbfa58e5e27b4d873fb5a6b191f83, type: 3}
+    - target: {fileID: 4985519988818590886, guid: 14bb194fba89c3147aadfe5b156f2f3b, type: 3}
       propertyPath: m_LocalRotation.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7155827465052846406, guid: f89bbfa58e5e27b4d873fb5a6b191f83, type: 3}
+    - target: {fileID: 4985519988818590886, guid: 14bb194fba89c3147aadfe5b156f2f3b, type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7155827465052846406, guid: f89bbfa58e5e27b4d873fb5a6b191f83, type: 3}
+    - target: {fileID: 4985519988818590886, guid: 14bb194fba89c3147aadfe5b156f2f3b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7155827465052846406, guid: f89bbfa58e5e27b4d873fb5a6b191f83, type: 3}
+    - target: {fileID: 4985519988818590886, guid: 14bb194fba89c3147aadfe5b156f2f3b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7155827465052846406, guid: f89bbfa58e5e27b4d873fb5a6b191f83, type: 3}
+    - target: {fileID: 4985519988818590886, guid: 14bb194fba89c3147aadfe5b156f2f3b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7155827465052846406, guid: f89bbfa58e5e27b4d873fb5a6b191f83, type: 3}
-      propertyPath: m_ConstrainProportionsScale
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7495480193906451452, guid: f89bbfa58e5e27b4d873fb5a6b191f83, type: 3}
+    - target: {fileID: 5655378393258288668, guid: 14bb194fba89c3147aadfe5b156f2f3b, type: 3}
       propertyPath: m_Name
-      value: BoatModel
-      objectReference: {fileID: 0}
-    - target: {fileID: 7495480193906451452, guid: f89bbfa58e5e27b4d873fb5a6b191f83, type: 3}
-      propertyPath: m_Layer
-      value: 8
+      value: Boat_Prefab
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: f89bbfa58e5e27b4d873fb5a6b191f83, type: 3}
---- !u!4 &6316619860161444596 stripped
+  m_SourcePrefab: {fileID: 100100000, guid: 14bb194fba89c3147aadfe5b156f2f3b, type: 3}
+--- !u!4 &5570399840209197224 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 7155827465052846406, guid: f89bbfa58e5e27b4d873fb5a6b191f83, type: 3}
-  m_PrefabInstance: {fileID: 3812226034308006834}
+  m_CorrespondingSourceObject: {fileID: 4985519988818590886, guid: 14bb194fba89c3147aadfe5b156f2f3b, type: 3}
+  m_PrefabInstance: {fileID: 611971850182583310}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7607282276716699982
 PrefabInstance:

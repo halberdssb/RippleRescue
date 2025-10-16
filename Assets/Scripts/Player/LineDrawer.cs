@@ -37,6 +37,7 @@ public class LineDrawer : MonoBehaviour
     private float _maxRaycastDistance = 100f;
     private float _distanceDraggedSinceLastPoint;
     private float _totalDistanceDrawn;
+    private float _minimumDrawDistance = 2f; // minimum distance for line drawing to be saved - prevents player from drawing tiny/invisible line segments
     private float _worldSpaceTouchDeltaMagnitude;
     private Vector3 _worldSpaceTouchLastFrame;
     private float _lineOffsetAbovePlayer = 0.2f; // distance on y axis the line will be above the player's height
@@ -81,8 +82,8 @@ public class LineDrawer : MonoBehaviour
         else if (!_controls.TouchPressed && _drawingLine)
         {
             StopDrawingLine();
-            // Reset line if only 1 point or less
-            if (LinePoints.Length <= 1)
+            // Reset line if less than minimum draw distance
+            if (_totalDistanceDrawn <= _minimumDrawDistance)
             {
                 ResetLine();
             }

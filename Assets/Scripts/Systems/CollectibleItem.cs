@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 /*
@@ -10,6 +11,19 @@ using UnityEngine;
 [RequireComponent(typeof(Collider)), RequireComponent(typeof(Rigidbody))]
 public class CollectibleItem : MonoBehaviour
 {
+    // enum type used for matching up collectibles to other itemes - ex: key to lock
+    [Serializable]
+    public enum CollectiblePairingType
+    {
+        None,
+        One,
+        Two,
+        Three,
+        Four
+    }
+
+    public CollectiblePairingType pairingType;
+
     // overrideable collection function - default just adds to player inventory
     protected virtual void CollectItem(ItemInventory playerInventory)
     {

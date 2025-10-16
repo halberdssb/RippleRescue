@@ -23,15 +23,20 @@ public class ItemInventory : MonoBehaviour
     }
 
     // Searches inventory for item of specified type and passes it out if there is one
-    public bool TryGetItemTypeFromInventory<T>(out T item)
+    public bool TryGetItemTypeFromInventory<T>(out T item, CollectibleItem.CollectiblePairingType pairingType = CollectibleItem.CollectiblePairingType.None)
     {
         foreach (CollectibleItem inventoryItem in _itemsInInventory)
         {
+            // check if the inventory item is the right type
             if (inventoryItem is T)
             {
-                item = inventoryItem.GetComponent<T>();
-                _itemsInInventory.Remove(inventoryItem);
-                return true;
+                // if there is a desired pairing type, check if the found item matches the type - otherwise always remove and return
+                if (pairingType == CollectibleItem.CollectiblePairingType.None || pairingType == inventoryItem.pairingType)
+                {
+                    item = inventoryItem.GetComponent<T>();
+                    _itemsInInventory.Remove(inventoryItem);
+                    return true;
+                }
             }
         }
 

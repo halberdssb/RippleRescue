@@ -17,6 +17,9 @@ public class Lock : MonoBehaviour, ICollisionEvent
     
     private AudioSource unlockSound;
 
+    [SerializeField]
+    private CollectibleItem.CollectiblePairingType keyPairingType;
+
     private void Awake()
     {
         collider = GetComponent<BoxCollider>();
@@ -32,7 +35,7 @@ public class Lock : MonoBehaviour, ICollisionEvent
         if (player.TryGetComponent<ItemInventory>(out var playerInventory))
         {
             // If player has key, turn off key and lock and keep player moving
-            if (playerInventory.TryGetItemTypeFromInventory(out Key key))
+            if (playerInventory.TryGetItemTypeFromInventory(out Key key, keyPairingType))
             {
                 key.gameObject.SetActive(false);
                 

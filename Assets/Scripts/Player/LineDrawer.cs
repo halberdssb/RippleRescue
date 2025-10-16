@@ -22,8 +22,6 @@ public class LineDrawer : MonoBehaviour
     private float startDrawDistance;
     [SerializeField]
     private float distanceBetweenPoints;
-    [SerializeField]
-    private float boatMoveSpeed;
 
     private float maxLineDistance;
 
@@ -47,6 +45,7 @@ public class LineDrawer : MonoBehaviour
     private float _sqrPlayerTouchDistance;
 
     private Camera _camera;
+    private LineFollower _lineFollower;
 
     public Vector3[] LinePoints
     {
@@ -56,6 +55,7 @@ public class LineDrawer : MonoBehaviour
     void Start()
     {
         _controls = GetComponent<PlayerControls>();
+        _lineFollower = GetComponent<LineFollower>();
         _camera = Camera.main;
         
         _sqrDistanceBetweenPoints = distanceBetweenPoints * distanceBetweenPoints;
@@ -64,7 +64,7 @@ public class LineDrawer : MonoBehaviour
         // set to position on default because first point will always be on top of player
         _worldSpaceTouchLastFrame = transform.position;
 
-        maxLineDistance = boatMoveSpeed * WaterDrain.Instance.DrainTime;
+        maxLineDistance = _lineFollower.MoveSpeed * WaterDrain.Instance.DrainTime;
     }
 
     void Update()
@@ -237,6 +237,13 @@ public class LineDrawer : MonoBehaviour
     private bool HasLineBeenDrawn()
     {
         return (_totalDistanceDrawn > 0) && (!_drawingLine);
+    }
+
+    // Removes a point from the line renderer by index
+    public void RemoveLinePointAtIndex(int index)
+    {
+        _linePoints.RemoveAt(index);
+        line.SetPositions(_linePoints.ToArray());
     }
     
     // Stops drawing line and resets proper value

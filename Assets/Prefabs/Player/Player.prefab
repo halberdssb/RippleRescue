@@ -101,7 +101,6 @@ MonoBehaviour:
   line: {fileID: 8574401335631270802}
   startDrawDistance: 1
   distanceBetweenPoints: 0.3
-  boatMoveSpeed: 5
   waterPlane: {fileID: 0}
   raycastLayerMask:
     serializedVersion: 2
@@ -118,7 +117,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e21fbf2cbcee00a40b1d6f674f05ba84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LineFollower
-  moveSpeed: 6
+  MoveSpeed: 4.3
   obstacleLayerMask:
     serializedVersion: 2
     m_Bits: 64

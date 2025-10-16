@@ -10,8 +10,7 @@ using UnityEngine;
 
 public class LineFollower : MonoBehaviour
 {
-    [SerializeField] 
-    private float moveSpeed;
+    public float MoveSpeed;
 
     [SerializeField] 
     private LayerMask obstacleLayerMask;
@@ -56,7 +55,7 @@ public class LineFollower : MonoBehaviour
         Vector3 distanceVectorToDestination = destination - transform.position;
         
         // start moving to next point
-        float tweenTime = distanceVectorToDestination.magnitude / moveSpeed;
+        float tweenTime = distanceVectorToDestination.magnitude / MoveSpeed;
         _moveTween = transform.DOMove(destination, tweenTime);
         _moveTween.SetEase(Ease.Linear);
         
@@ -65,6 +64,10 @@ public class LineFollower : MonoBehaviour
         {
             _moveTween.onComplete += () =>
             {
+                // remove previous point from drawn line and update visuals
+                _lineDrawer.RemoveLinePointAtIndex(0);
+
+                // begin movement to next point on line
                 _nextPointIndex++;
                 MoveToNextPointLooping(_currentLinePoints[_nextPointIndex]);
             };

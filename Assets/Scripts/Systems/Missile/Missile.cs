@@ -17,6 +17,9 @@ public class Missile : MonoBehaviour
     [SerializeField]
     private float rotationSpeed;
 
+    [SerializeField] private LayerMask obstacleMask;
+    [SerializeField] private LayerMask destroyMissileMask;
+
     [Space, SerializeField]
     private float launchForce;
 
@@ -28,9 +31,8 @@ public class Missile : MonoBehaviour
     [Space]
     [SerializeField]
     private GameObject art;
-
-    private Tween spinTween;
-    private float spinTime = 2f;
+    [SerializeField]
+    private Animator animator;
 
     private void Start()
     {
@@ -39,14 +41,21 @@ public class Missile : MonoBehaviour
 
         if (rotateOnWaterDrain)
         {
-            WaterDrain.Instance.OnWaterStartDraining += () => StartSpinTween();
-            
+            WaterDrain.Instance.OnWaterStartDraining += () => _rotating = true;
+            WaterDrain.Instance.OnWaterDrained += () =>
+            {
+                animator.SetBool("Launch", false);
+                _rotating = false;
+            };
         }
     }
 
     private void Update()
     {
-
+        if (_rotating)
+        {
+            transform.eulerAngles += new Vector3(0f, rotationSpeed * Time.deltaTime, 0f);
+        }
     }
 
     // fires missile in facing direction
@@ -60,6 +69,8 @@ public class Missile : MonoBehaviour
         _hasBeenLaunched = true;
         Vector3 launchVector = launchForce * transform.forward;
         _rb.AddForce(launchVector, ForceMode.Impulse);
+        
+        animator.SetBool("Launch", true);
     }
 
     // turns off art and collision for missile
@@ -72,27 +83,21 @@ public class Missile : MonoBehaviour
     // start movement by player if player collides
     private void OnTriggerEnter(Collider other)
     {
+        // launch from player
         if (other.CompareTag("Player"))
         {
             LaunchMissile();
         }
-    }
-
-    // destroy missile on collision with collider
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (_hasBeenLaunched && collision.gameObject.CompareTag("Obstacle"))
+        
+        // hit obstacle
+        if (_hasBeenLaunched && (obstacleMask & (1 << other.gameObject.layer)) != 0)
         {
+            // break object if obstacle
+            if ((destroyMissileMask & (1 << other.gameObject.layer)) != 0)
+            {
+                other.gameObject.SetActive(false);
+            }
             DisableMissile();
         }
-    }
-
-    private void StartSpinTween()
-    {
-        Vector3 fullSpinRotation = transform.eulerAngles;
-        fullSpinRotation.y += 360;
-        
-        spinTween = transform.DOLocalRotate(fullSpinRotation, spinTime);
-        spinTween.onComplete += StartSpinTween;
     }
 }

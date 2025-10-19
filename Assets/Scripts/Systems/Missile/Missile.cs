@@ -1,3 +1,4 @@
+using DG.Tweening;
 using UnityEngine;
 
 /*
@@ -28,6 +29,9 @@ public class Missile : MonoBehaviour
     [SerializeField]
     private GameObject art;
 
+    private Tween spinTween;
+    private float spinTime = 2f;
+
     private void Start()
     {
         _rb = GetComponent<Rigidbody>();
@@ -35,16 +39,14 @@ public class Missile : MonoBehaviour
 
         if (rotateOnWaterDrain)
         {
-            WaterDrain.Instance.OnWaterStartDraining += () => _rotating = true;
+            WaterDrain.Instance.OnWaterStartDraining += () => StartSpinTween();
+            
         }
     }
 
     private void Update()
     {
-        if (_rotating)
-        {
-            transform.Rotate(transform.right, transform.eulerAngles.z + (1 * rotationSpeed));
-        }
+
     }
 
     // fires missile in facing direction
@@ -83,5 +85,14 @@ public class Missile : MonoBehaviour
         {
             DisableMissile();
         }
+    }
+
+    private void StartSpinTween()
+    {
+        Vector3 fullSpinRotation = transform.eulerAngles;
+        fullSpinRotation.y += 360;
+        
+        spinTween = transform.DOLocalRotate(fullSpinRotation, spinTime);
+        spinTween.onComplete += StartSpinTween;
     }
 }

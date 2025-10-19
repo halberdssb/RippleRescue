@@ -34,6 +34,12 @@ public class Missile : MonoBehaviour
     [SerializeField]
     private Animator animator;
 
+    [Space] 
+    [SerializeField] 
+    private AudioSource launchSound;
+    [SerializeField] 
+    private AudioSource destroySound;
+
     private void Start()
     {
         _rb = GetComponent<Rigidbody>();
@@ -71,6 +77,7 @@ public class Missile : MonoBehaviour
         _rb.AddForce(launchVector, ForceMode.Impulse);
         
         animator.SetBool("Launch", true);
+        launchSound.Play();
     }
 
     // turns off art and collision for missile
@@ -96,6 +103,7 @@ public class Missile : MonoBehaviour
             if ((destroyMissileMask & (1 << other.gameObject.layer)) != 0)
             {
                 other.gameObject.SetActive(false);
+                destroySound.Play();
             }
             DisableMissile();
         }

@@ -41,7 +41,12 @@ public class GameManager : MonoBehaviour
         "Med2Final",
         "Med3Final",
         "Med4Final",
-        "Med5Final"
+        "Med5Final",
+        "Hard1Final",
+        "Hard2Final",
+        "Hard3Final",
+        "Hard4Final",
+        "Hard5Final",
     };
 
     private void Start()

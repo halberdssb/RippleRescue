@@ -353,6 +353,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3291613542826325140}
     m_Modifications:
+    - target: {fileID: 73764143761438782, guid: dd402cff338c75a42b144d408ef5584e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 73764143761438782, guid: dd402cff338c75a42b144d408ef5584e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 3821538875661643808}
+    - target: {fileID: 73764143761438782, guid: dd402cff338c75a42b144d408ef5584e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: LoadPuzzleNumber
+      objectReference: {fileID: 0}
+    - target: {fileID: 73764143761438782, guid: dd402cff338c75a42b144d408ef5584e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 98614814726351831, guid: dd402cff338c75a42b144d408ef5584e, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -432,6 +448,22 @@ PrefabInstance:
     - target: {fileID: 1893534816026540671, guid: dd402cff338c75a42b144d408ef5584e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2224898276645049472, guid: dd402cff338c75a42b144d408ef5584e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2224898276645049472, guid: dd402cff338c75a42b144d408ef5584e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 3821538875661643808}
+    - target: {fileID: 2224898276645049472, guid: dd402cff338c75a42b144d408ef5584e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: LoadPuzzleNumber
+      objectReference: {fileID: 0}
+    - target: {fileID: 2224898276645049472, guid: dd402cff338c75a42b144d408ef5584e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 2665355839033683126, guid: dd402cff338c75a42b144d408ef5584e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -545,6 +577,22 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 4492548743159123681, guid: dd402cff338c75a42b144d408ef5584e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4492548743159123681, guid: dd402cff338c75a42b144d408ef5584e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 3821538875661643808}
+    - target: {fileID: 4492548743159123681, guid: dd402cff338c75a42b144d408ef5584e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: LoadPuzzleNumber
+      objectReference: {fileID: 0}
+    - target: {fileID: 4492548743159123681, guid: dd402cff338c75a42b144d408ef5584e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 14
+      objectReference: {fileID: 0}
     - target: {fileID: 4508508983958323340, guid: dd402cff338c75a42b144d408ef5584e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -644,6 +692,38 @@ PrefabInstance:
     - target: {fileID: 6666361949644771842, guid: dd402cff338c75a42b144d408ef5584e, type: 3}
       propertyPath: m_BlocksRaycasts
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7002077824528176407, guid: dd402cff338c75a42b144d408ef5584e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7002077824528176407, guid: dd402cff338c75a42b144d408ef5584e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 3821538875661643808}
+    - target: {fileID: 7002077824528176407, guid: dd402cff338c75a42b144d408ef5584e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: LoadPuzzleNumber
+      objectReference: {fileID: 0}
+    - target: {fileID: 7002077824528176407, guid: dd402cff338c75a42b144d408ef5584e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 7049779271694107511, guid: dd402cff338c75a42b144d408ef5584e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7049779271694107511, guid: dd402cff338c75a42b144d408ef5584e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 3821538875661643808}
+    - target: {fileID: 7049779271694107511, guid: dd402cff338c75a42b144d408ef5584e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: LoadPuzzleNumber
+      objectReference: {fileID: 0}
+    - target: {fileID: 7049779271694107511, guid: dd402cff338c75a42b144d408ef5584e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 7326746167440797121, guid: dd402cff338c75a42b144d408ef5584e, type: 3}
       propertyPath: m_Pivot.x

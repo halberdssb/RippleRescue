@@ -131,12 +131,12 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log("game done!");
         }
+        UpdateResultsText();
     }
-    
+
     // Fades out game hud and fades in end screen
     public void EndGame()
     {
-        UpdateResultsText();
         playerLineDrawer.SetLineDrawerActive(false);
         FadeCanvasGroup(playerHUD, false, () =>
             FadeCanvasGroup(endScreen, true));

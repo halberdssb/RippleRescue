@@ -12,7 +12,7 @@ using UnityEngine.UI;
 public class WaterDrain : MonoBehaviour
 {
     public static WaterDrain Instance;
-    
+
     [Tooltip("Total time until the water drains.")]
     public float DrainTime = 5;
 
@@ -25,7 +25,7 @@ public class WaterDrain : MonoBehaviour
     [SerializeField]
     [Tooltip("The end position that the water plane will tween down to - only Y position is used.")]
     private Transform waterPlaneEndPosition;
-    
+
     private bool _waterDraining;
     private Tween _waterTween;
     private float _startWaterYPosition;
@@ -38,13 +38,15 @@ public class WaterDrain : MonoBehaviour
         {
             Destroy(Instance);
         }
-        
+
         Instance = this;
     }
     void Start()
     {
         _startWaterYPosition = transform.position.y;
         _endDrainYPosition = waterPlaneEndPosition.position.y;
+
+        InstantDrainWater();
     }
 
     // Starts the water drain tween
@@ -65,7 +67,7 @@ public class WaterDrain : MonoBehaviour
             OnWaterDrained?.Invoke();
         };
     }
-    
+
     // returns the 0-1 value of the water position as it drains (1 is full, 0 is drained)
     public float GetWaterDrainPercentage()
     {
@@ -77,5 +79,11 @@ public class WaterDrain : MonoBehaviour
     private void SetEndDrainPositionToCurrentPosition()
     {
         waterPlaneEndPosition.position = transform.position;
+    }
+
+    // sets the tub to be fully drained/empty - used on scene start for fill up sequence
+    private void InstantDrainWater()
+    {
+        transform.position = new Vector3(transform.position.x, waterPlaneEndPosition.position.y, transform.position.z);
     }
 }

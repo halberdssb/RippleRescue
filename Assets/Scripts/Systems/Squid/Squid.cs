@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -16,6 +17,11 @@ public class Squid : MonoBehaviour
 
     [SerializeField, Tooltip("True = squid will move from last point to first point in same direction, False = squid will move backwards through poins when it reaches end of path")]
     private bool loopThroughPoints;
+    [SerializeField]
+    private float moveSpeed;
+
+    private int _lastMovePositionIndex;
+    private int _moveDirection; // 1 is forward, -1 is backward
 
     private void Awake()
     {
@@ -23,12 +29,54 @@ public class Squid : MonoBehaviour
     }
     void Start()
     {
-        
+        _moveDirection = 1;
+        TweenToNextPointOnPath();
     }
 
     void Update()
     {
         
+    }
+
+    // tweens along path to next point
+    private void TweenToNextPointOnPath()
+    {
+        Vector3 destination = movePositions[_lastMovePositionIndex + _moveDirection];
+        Vector3 distanceVectorToDestination = destination - transform.position;
+
+        // start moving to next point
+        float tweenTime = distanceVectorToDestination.magnitude / moveSpeed;
+        Tween moveTween = transform.DOMove(destination, tweenTime).SetEase(Ease.Linear);
+
+        moveTween.onComplete += () =>
+        {
+            // check if at end of path
+            if (IsAtEndOfPath())
+            {
+                // continue to starting position if looping
+                if (loopThroughPoints)
+                {
+                    // set to -2 to properly move to index 0 after increment
+                    _lastMovePositionIndex = -2;
+                }
+                // else flip move direction
+                else
+                {
+                    _moveDirection *= -1;
+                }
+            }
+
+            _lastMovePositionIndex += _moveDirection;
+            TweenToNextPointOnPath();
+        };
+    }
+
+    // checks if squid is at end of point in either direction (if not looping)
+    private bool IsAtEndOfPath()
+    {
+        // use -2 to index because move tween uses lastMovePositionIndex+1
+        return (_moveDirection == 1 && _lastMovePositionIndex >= movePositions.Count - 2||
+                _moveDirection == -1 && _lastMovePositionIndex <= 1); 
     }
 
     // draw path between all movement points

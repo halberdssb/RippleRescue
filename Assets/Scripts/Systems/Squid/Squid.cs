@@ -20,6 +20,8 @@ public class Squid : MonoBehaviour
     [SerializeField]
     private float moveSpeed;
 
+    [Space] [SerializeField] private float playerSlowedSpeed;
+
     private int _lastMovePositionIndex;
     private int _moveDirection; // 1 is forward, -1 is backward
 
@@ -30,12 +32,7 @@ public class Squid : MonoBehaviour
     void Start()
     {
         _moveDirection = 1;
-        TweenToNextPointOnPath();
-    }
-
-    void Update()
-    {
-        
+        WaterDrain.Instance.OnWaterStartDraining += TweenToNextPointOnPath;
     }
 
     // tweens along path to next point
@@ -47,6 +44,9 @@ public class Squid : MonoBehaviour
         // start moving to next point
         float tweenTime = distanceVectorToDestination.magnitude / moveSpeed;
         Tween moveTween = transform.DOMove(destination, tweenTime).SetEase(Ease.Linear);
+        
+        // look at destination
+        transform.forward = distanceVectorToDestination.normalized;
 
         moveTween.onComplete += () =>
         {
@@ -62,6 +62,8 @@ public class Squid : MonoBehaviour
                 // else flip move direction
                 else
                 {
+                    // offset by two extra for correct index increment
+                    _lastMovePositionIndex += 2 * _moveDirection;
                     _moveDirection *= -1;
                 }
             }
@@ -77,6 +79,17 @@ public class Squid : MonoBehaviour
         // use -2 to index because move tween uses lastMovePositionIndex+1
         return (_moveDirection == 1 && _lastMovePositionIndex >= movePositions.Count - 2||
                 _moveDirection == -1 && _lastMovePositionIndex <= 1); 
+    }
+    
+    // collide with player and slow them down
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            LineFollower playerLineFollower = other.GetComponent<LineFollower>();
+            playerLineFollower.SetLineFollowSpeed(playerSlowedSpeed);
+            gameObject.SetActive(false);
+        }
     }
 
     // draw path between all movement points

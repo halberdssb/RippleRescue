@@ -34,6 +34,7 @@ public class LineFollower : MonoBehaviour
         // subscribe movement to water drain start
         WaterDrain.Instance.OnWaterStartDraining += MoveAlongLineToEnd;
         WaterDrain.Instance.OnWaterDrained -= () => WaterDrain.Instance.OnWaterStartDraining -= MoveAlongLineToEnd;
+        WaterDrain.Instance.OnWaterDrained += StopFollowingLine;
     }
     
     // Begins set movement along a line through all points
@@ -111,5 +112,11 @@ public class LineFollower : MonoBehaviour
         _moveTween.Kill();
         _turnTween.Kill();
         OnFinishedFollowingLine?.Invoke();
+    }
+    
+    // Sets player speed
+    public void SetLineFollowSpeed(float speed)
+    {
+        MoveSpeed = speed;
     }
 }

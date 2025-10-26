@@ -13,7 +13,6 @@ public class PlayerHUDManager : MonoBehaviour
    // sets interactivity for all canvas groups in the player hud 
    private void SetPlayerHUDInteractivity(bool interactable)
    {
-       Debug.Log("interactable");
        foreach (var canvasGroup in canvasGroups)
        {
            canvasGroup.interactable = interactable;

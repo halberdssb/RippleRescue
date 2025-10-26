@@ -46,7 +46,7 @@ public class WaterDrain : MonoBehaviour
         _startWaterYPosition = transform.position.y;
         _endDrainYPosition = waterPlaneEndPosition.position.y;
 
-        InstantDrainWater();
+        //InstantDrainWater();
     }
 
     // Starts the water drain tween

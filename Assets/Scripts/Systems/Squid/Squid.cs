@@ -12,7 +12,7 @@ using UnityEngine;
 
 public class Squid : MonoBehaviour
 {
-    [HideInInspector]
+    //[HideInInspector]
     public List<Vector3> movePositions = new List<Vector3>();
 
     [SerializeField, Tooltip("True = squid will move from last point to first point in same direction, False = squid will move backwards through poins when it reaches end of path")]

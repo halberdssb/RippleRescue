@@ -1016,6 +1016,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: Squid
       objectReference: {fileID: 0}
+    - target: {fileID: 2195889826787086852, guid: 6c87390e6afb7bd418909b24dcfa8735, type: 3}
+      propertyPath: movePositions.Array.data[0].x
+      value: 17.055935
+      objectReference: {fileID: 0}
+    - target: {fileID: 2195889826787086852, guid: 6c87390e6afb7bd418909b24dcfa8735, type: 3}
+      propertyPath: movePositions.Array.data[0].z
+      value: -38.214977
+      objectReference: {fileID: 0}
+    - target: {fileID: 2195889826787086852, guid: 6c87390e6afb7bd418909b24dcfa8735, type: 3}
+      propertyPath: movePositions.Array.data[1].x
+      value: 15.89
+      objectReference: {fileID: 0}
+    - target: {fileID: 2195889826787086852, guid: 6c87390e6afb7bd418909b24dcfa8735, type: 3}
+      propertyPath: movePositions.Array.data[2].x
+      value: 14.508674
+      objectReference: {fileID: 0}
+    - target: {fileID: 2195889826787086852, guid: 6c87390e6afb7bd418909b24dcfa8735, type: 3}
+      propertyPath: movePositions.Array.data[2].z
+      value: -48.01699
+      objectReference: {fileID: 0}
     - target: {fileID: 4060304424992633609, guid: 6c87390e6afb7bd418909b24dcfa8735, type: 3}
       propertyPath: m_LocalPosition.x
       value: 17.33

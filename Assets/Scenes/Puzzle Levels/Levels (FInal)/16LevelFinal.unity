@@ -2384,7 +2384,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3134331421976905898, guid: 23a293975532ed242b5104baec336349, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
-      value: 2
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 3291613542826325140, guid: 23a293975532ed242b5104baec336349, type: 3}
       propertyPath: m_LocalPosition.x

@@ -13,6 +13,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private bool startPlayerInactive;
+    [SerializeField] private bool isMenu;
     
     [Space]
     [SerializeField] private CanvasGroup playerHUD;
@@ -47,10 +48,17 @@ public class GameManager : MonoBehaviour
         "Hard3Final",
         "Hard4Final",
         "Hard5Final",
+        "16LevelFinal",
+        "17LevelFinal",
+        "18LevelFinal",
+        "19LevelFinal",
+        "20LevelFinal"
     };
 
     private void Start()
     {
+        if (isMenu) return;
+        
         playerLineFollower = playerLineDrawer.GetComponent<LineFollower>();
         
         // Turn player off if set to

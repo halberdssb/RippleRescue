@@ -137,6 +137,7 @@ public class GameManager : MonoBehaviour
     // Fades out game hud and fades in end screen
     public void EndGame()
     {
+        UpdateResultsText();
         playerLineDrawer.SetLineDrawerActive(false);
         FadeCanvasGroup(playerHUD, false, () =>
             FadeCanvasGroup(endScreen, true));

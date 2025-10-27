@@ -15,6 +15,8 @@ public class Squid : MonoBehaviour
     //[HideInInspector]
     public List<Vector3> movePositions = new List<Vector3>();
 
+    [SerializeField] private AudioSource hitSound;
+    [SerializeField] private GameObject art;
     [SerializeField, Tooltip("True = squid will move from last point to first point in same direction, False = squid will move backwards through poins when it reaches end of path")]
     private bool loopThroughPoints;
     [SerializeField]
@@ -22,12 +24,15 @@ public class Squid : MonoBehaviour
 
     [Space] [SerializeField] private float playerSlowedSpeed;
 
+    private SphereCollider collider;
+    
     private int _lastMovePositionIndex;
     private int _moveDirection; // 1 is forward, -1 is backward
 
     private void Awake()
     {
         movePositions.Insert(0, transform.position);
+        collider = GetComponent<SphereCollider>();
     }
     void Start()
     {
@@ -88,8 +93,16 @@ public class Squid : MonoBehaviour
         {
             LineFollower playerLineFollower = other.GetComponent<LineFollower>();
             playerLineFollower.SetLineFollowSpeed(playerSlowedSpeed);
-            gameObject.SetActive(false);
+            DisableSquid();
+            hitSound.Play();
         }
+    }
+    
+    // disables collider and art
+    private void DisableSquid()
+    {
+        art.SetActive(false);
+        collider.enabled = false;
     }
 
     // draw path between all movement points

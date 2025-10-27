@@ -67,7 +67,11 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 312cf8535fee3cc4cb59b6b83370c703, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 033a16922b1e15b45b9d3cac9149e436, type: 2}
+      objectReference: {fileID: 2100000, guid: e43e2cd6f50ffeb4e9534a25288b0d77, type: 2}
+    - target: {fileID: -5754084199372789682, guid: 312cf8535fee3cc4cb59b6b83370c703, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: -4545423930167495100, guid: 0fec47cf6d4cdcf4fb374451c9c0dc59, type: 3}
     - target: {fileID: 919132149155446097, guid: 312cf8535fee3cc4cb59b6b83370c703, type: 3}
       propertyPath: m_Name
       value: Lock
@@ -107,6 +111,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 897bcec4dcfcd8f49a5a2c9e4850b30b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Lock
+  keyPairingType: 0
 --- !u!82 &5849727761695988294
 AudioSource:
   m_ObjectHideFlags: 0

@@ -30,7 +30,7 @@ public class WaterDrain : MonoBehaviour
     private Tween _waterTween;
     private float _startWaterYPosition;
     private float _endDrainYPosition;
-
+    private float _fillUpTweenTime;
 
     void Awake()
     {
@@ -85,5 +85,11 @@ public class WaterDrain : MonoBehaviour
     private void InstantDrainWater()
     {
         transform.position = new Vector3(transform.position.x, waterPlaneEndPosition.position.y, transform.position.z);
+    }
+
+    // fills up the bathtub on level start
+    public void FillUpBathtub()
+    {
+
     }
 }

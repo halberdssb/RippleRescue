@@ -28,9 +28,12 @@ public class WaterDrain : MonoBehaviour
 
     private bool _waterDraining;
     private Tween _waterTween;
-    private float _startWaterYPosition;
+    private float _startDrainYPosition;
     private float _endDrainYPosition;
-    private float _fillUpTweenTime;
+    private float _fillUpTweenTime = 3f;
+
+    private float _bubbleFillUpTweenTime = 1.5f;
+    
 
     void Awake()
     {
@@ -43,21 +46,21 @@ public class WaterDrain : MonoBehaviour
     }
     void Start()
     {
-        _startWaterYPosition = transform.position.y;
+        _startDrainYPosition = transform.position.y;
         _endDrainYPosition = waterPlaneEndPosition.position.y;
 
         //InstantDrainWater();
     }
 
     // Starts the water drain tween
-    public void StartWaterDrain()
+    public void StartWaterDrain(float tweenTime)
     {
         // start drain and fire start delegate
         _waterDraining = true;
         OnWaterStartDraining?.Invoke();
 
         // tween down to end position
-        _waterTween = transform.DOMoveY(_endDrainYPosition, DrainTime);
+        _waterTween = transform.DOMoveY(_endDrainYPosition, tweenTime);
 
         // on complete, set bool false and fire water drained delegate
         _waterTween.SetEase(Ease.Linear);
@@ -68,10 +71,15 @@ public class WaterDrain : MonoBehaviour
         };
     }
 
+    public void StartWaterDrain()
+    {
+        StartWaterDrain(DrainTime);
+    }
+
     // returns the 0-1 value of the water position as it drains (1 is full, 0 is drained)
     public float GetWaterDrainPercentage()
     {
-        return Mathf.InverseLerp(_endDrainYPosition, _startWaterYPosition, transform.position.y);
+        return Mathf.InverseLerp(_endDrainYPosition, _startDrainYPosition, transform.position.y);
     }
 
     // Updates the drain end position to the current position of the plane
@@ -91,5 +99,20 @@ public class WaterDrain : MonoBehaviour
     public void FillUpBathtub()
     {
 
+    }
+
+    public void MoveWaterUpByAmount(float movementY)
+    {
+        _waterTween.Kill();
+        
+        // minus movement because of inverted bathtub up movement
+        float endPositionY = transform.position.y - movementY;
+        float drainTimeLeft = Mathf.InverseLerp(_endDrainYPosition, _startDrainYPosition, endPositionY) * DrainTime;
+        Tween bubbleTween = transform.DOMoveY(endPositionY, _bubbleFillUpTweenTime).SetEase(Ease.Linear);
+        bubbleTween.onComplete += () =>
+        {
+            Debug.Log("bubble fill finished");
+            StartWaterDrain(drainTimeLeft);
+        };
     }
 }

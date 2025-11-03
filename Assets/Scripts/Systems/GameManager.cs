@@ -52,7 +52,12 @@ public class GameManager : MonoBehaviour
         "17LevelFinal",
         "18LevelFinal",
         "19LevelFinal",
-        "20LevelFinal"
+        "20LevelFinal",
+        "Bubble1Final",
+        "Bubble2Final",
+        "Bubble3Final",
+        "Bubble4Final",
+        "Bubble5Final"
     };
 
     private void Start()
@@ -90,9 +95,9 @@ public class GameManager : MonoBehaviour
     public void StartGame()
     {
         // Fade out start screen canvas and fade in main screen
-        FadeCanvasGroup(startScreen, false, () => 
-            FadeCanvasGroup(playerHUD, true, () => 
-                playerLineDrawer.SetLineDrawerActive(true)));
+        FadeCanvasGroup(startScreen, false, () =>
+            WaterDrain.Instance.FillUpBathtub(() => FadeCanvasGroup(playerHUD, true, () =>
+                playerLineDrawer.SetLineDrawerActive(true))));
         
         // start music
         music.Play();

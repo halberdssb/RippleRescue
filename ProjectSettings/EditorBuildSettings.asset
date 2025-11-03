@@ -74,6 +74,21 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Puzzle Levels/Levels (FInal)/20LevelFinal.unity
     guid: df7d16c2844039841a677addb0317ac9
+  - enabled: 1
+    path: Assets/Scenes/Puzzle Levels/Levels (FInal)/Bubble1Final.unity
+    guid: 1878675da297c5347b0a6a2c84483020
+  - enabled: 1
+    path: Assets/Scenes/Puzzle Levels/Levels (FInal)/Bubble2Final.unity
+    guid: a5e44adbd1f26fc4fa4e884949873c0b
+  - enabled: 1
+    path: Assets/Scenes/Puzzle Levels/Levels (FInal)/Bubble3Final.unity
+    guid: 7bc4ef3c4bc2d214f85b5ecfd1e6365f
+  - enabled: 1
+    path: Assets/Scenes/Puzzle Levels/Levels (FInal)/Bubble4Final.unity
+    guid: 96172a90c86dfbd4ab6cb348d7e79b4b
+  - enabled: 1
+    path: Assets/Scenes/Puzzle Levels/Levels (FInal)/Bubble5Final.unity
+    guid: 5f7089eae1ee1de49a2126efad99e032
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

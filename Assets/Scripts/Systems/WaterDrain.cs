@@ -1,5 +1,7 @@
+using System;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 /*
@@ -49,15 +51,19 @@ public class WaterDrain : MonoBehaviour
         _startDrainYPosition = transform.position.y;
         _endDrainYPosition = waterPlaneEndPosition.position.y;
 
-        //InstantDrainWater();
+        InstantDrainWater();
     }
 
     // Starts the water drain tween
     public void StartWaterDrain(float tweenTime)
     {
         // start drain and fire start delegate
+        if (!_waterDraining)
+        {
+            OnWaterStartDraining?.Invoke();
+        }
+        
         _waterDraining = true;
-        OnWaterStartDraining?.Invoke();
 
         // tween down to end position
         _waterTween = transform.DOMoveY(_endDrainYPosition, tweenTime);
@@ -96,9 +102,9 @@ public class WaterDrain : MonoBehaviour
     }
 
     // fills up the bathtub on level start
-    public void FillUpBathtub()
+    public void FillUpBathtub(Action onFillComplete)
     {
-
+        transform.DOMoveY(_startDrainYPosition, _fillUpTweenTime).onComplete += () => onFillComplete?.Invoke();
     }
 
     public void MoveWaterUpByAmount(float movementY)

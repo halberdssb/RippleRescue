@@ -13,6 +13,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private bool startPlayerInactive;
+    [SerializeField] private bool isMenu;
     
     [Space]
     [SerializeField] private CanvasGroup playerHUD;
@@ -47,10 +48,22 @@ public class GameManager : MonoBehaviour
         "Hard3Final",
         "Hard4Final",
         "Hard5Final",
+        "16LevelFinal",
+        "17LevelFinal",
+        "18LevelFinal",
+        "19LevelFinal",
+        "20LevelFinal",
+        "Bubble1Final",
+        "Bubble2Final",
+        "Bubble3Final",
+        "Bubble4Final",
+        "Bubble5Final"
     };
 
     private void Start()
     {
+        if (isMenu) return;
+        
         playerLineFollower = playerLineDrawer.GetComponent<LineFollower>();
         
         // Turn player off if set to
@@ -82,9 +95,9 @@ public class GameManager : MonoBehaviour
     public void StartGame()
     {
         // Fade out start screen canvas and fade in main screen
-        FadeCanvasGroup(startScreen, false, () => 
-            FadeCanvasGroup(playerHUD, true, () => 
-                playerLineDrawer.SetLineDrawerActive(true)));
+        FadeCanvasGroup(startScreen, false, () =>
+            WaterDrain.Instance.FillUpBathtub(() => FadeCanvasGroup(playerHUD, true, () =>
+                playerLineDrawer.SetLineDrawerActive(true))));
         
         // start music
         music.Play();
@@ -137,6 +150,7 @@ public class GameManager : MonoBehaviour
     // Fades out game hud and fades in end screen
     public void EndGame()
     {
+        UpdateResultsText();
         playerLineDrawer.SetLineDrawerActive(false);
         FadeCanvasGroup(playerHUD, false, () =>
             FadeCanvasGroup(endScreen, true));

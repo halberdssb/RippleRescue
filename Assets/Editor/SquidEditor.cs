@@ -36,6 +36,8 @@ public class SquidEditor : Editor
     // draw position handles for path positions
     public void OnSceneGUI()
     {
+        if (Application.isPlaying) return;
+        
         Squid squid = (Squid)target;
 
         // create handle and update move position for each point in squid path
@@ -53,7 +55,9 @@ public class SquidEditor : Editor
                 // make sure y values stay on same plane as squid
                 movePosition.y = squid.transform.position.y;
                 squid.movePositions[i] = movePosition;
+                EditorUtility.SetDirty(serializedObject.targetObject);
             }
         }
+        
     }
 }

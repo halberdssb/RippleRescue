@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Test Scenes/MovementTestScene.unity
     guid: 18b26d12415166f4f83395ee08533fd4
   - enabled: 1
+    path: Assets/Scenes/CinematicsScene.unity
+    guid: 44697f3357f152c4baebee74e8ab9c07
+  - enabled: 1
     path: Assets/Scenes/Puzzle Levels/Levels (FInal)/Easy1Final.unity
     guid: d3c53e93ba77d2e419b18d4700568bb4
   - enabled: 1
@@ -56,6 +59,36 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Puzzle Levels/Levels (FInal)/Hard5Final.unity
     guid: db30a075e2c069846b459988e6824fb1
+  - enabled: 1
+    path: Assets/Scenes/Puzzle Levels/Levels (FInal)/16LevelFinal.unity
+    guid: 131c55cdb7c292b46a0d00284a9aa549
+  - enabled: 1
+    path: Assets/Scenes/Puzzle Levels/Levels (FInal)/17LevelFinal.unity
+    guid: 451be7977849f34418deae3b77ddc604
+  - enabled: 1
+    path: Assets/Scenes/Puzzle Levels/Levels (FInal)/18LevelFinal.unity
+    guid: 99f4681f11f9197419a34853c1904db3
+  - enabled: 1
+    path: Assets/Scenes/Puzzle Levels/Levels (FInal)/19LevelFinal.unity
+    guid: 4afb91ad903dd6846b3057443db911d0
+  - enabled: 1
+    path: Assets/Scenes/Puzzle Levels/Levels (FInal)/20LevelFinal.unity
+    guid: df7d16c2844039841a677addb0317ac9
+  - enabled: 1
+    path: Assets/Scenes/Puzzle Levels/Levels (FInal)/Bubble1Final.unity
+    guid: 1878675da297c5347b0a6a2c84483020
+  - enabled: 1
+    path: Assets/Scenes/Puzzle Levels/Levels (FInal)/Bubble2Final.unity
+    guid: a5e44adbd1f26fc4fa4e884949873c0b
+  - enabled: 1
+    path: Assets/Scenes/Puzzle Levels/Levels (FInal)/Bubble3Final.unity
+    guid: 7bc4ef3c4bc2d214f85b5ecfd1e6365f
+  - enabled: 1
+    path: Assets/Scenes/Puzzle Levels/Levels (FInal)/Bubble4Final.unity
+    guid: 96172a90c86dfbd4ab6cb348d7e79b4b
+  - enabled: 1
+    path: Assets/Scenes/Puzzle Levels/Levels (FInal)/Bubble5Final.unity
+    guid: 5f7089eae1ee1de49a2126efad99e032
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

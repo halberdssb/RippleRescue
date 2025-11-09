@@ -2,6 +2,7 @@ using System;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 
 /*
@@ -12,6 +13,8 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    private readonly string MainMenuSceneName = "MainMenu";
+    
     [SerializeField] private bool startPlayerInactive;
     [SerializeField] private bool isMenu;
     
@@ -23,6 +26,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI resultsText;
     [SerializeField] private AudioSource music;
     [SerializeField] private AudioSource waterDrainSound;
+    [SerializeField] private AudioMixer audioMixer;
 
     private LineFollower playerLineFollower;
 
@@ -31,7 +35,7 @@ public class GameManager : MonoBehaviour
     
     private float fadeTime = 0.8f;
 
-    private string[] puzzleLevelNames = new string[]
+    public static string[] puzzleLevelNames = new string[]
     {
         "Easy1Final",
         "Easy2Final",
@@ -173,5 +177,56 @@ public class GameManager : MonoBehaviour
     public void LoadPuzzleNumber(int puzzleNumber)
     {
         SceneManager.LoadScene(puzzleLevelNames[puzzleNumber - 1]);
+    }
+    
+    // loads title screen
+    public void QuitToTitle()
+    {
+        SceneManager.LoadScene(MainMenuSceneName);
+    }
+    
+    // quits the game
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
+    
+    // adjusts the audio mixer master slider
+    public void UpdateMasterVolume(float volume)
+    {
+        audioMixer.SetFloat("masterVolume", volume);    
+    }
+    
+    // adjusts the audio mixer master slider
+    public void UpdateMusicVolume(float volume)
+    {
+        audioMixer.SetFloat("musicVolume", volume);    
+
+    }
+    
+    // adjusts the audio mixer master slider
+    public void UpdateSoundVolume(float volume)
+    {
+        audioMixer.SetFloat("soundVolume", volume);    
+    }
+    
+    // saves level data to save data
+    public void SaveLevelToSaveData()
+    {
+        // find index of level in save data - uses order of puzzle names as order
+        int levelSaveIndex = 0;
+        for (int i = 0; i < puzzleLevelNames.Length; i++)
+        {
+            if (puzzleLevelNames[i].Equals(SceneManager.GetActiveScene().name))
+            {
+                levelSaveIndex = i;
+                break;
+            }
+        }
+        
+        // save to save data
+        LevelSaveData levelSaveData = new LevelSaveData(true, numCollectiblesCollected);
+        SaveLoadManager.Instance.SaveData.SaveDataForLevel(levelSaveIndex, levelSaveData);
+        SaveLoadManager.Instance.SaveGame();
     }
 }

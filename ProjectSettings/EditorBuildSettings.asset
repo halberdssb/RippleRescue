@@ -12,7 +12,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Test Scenes/MovementTestScene.unity
     guid: 18b26d12415166f4f83395ee08533fd4
   - enabled: 1
-    path: Assets/Scenes/CinematicsScene.unity
+    path: Assets/Scenes/MainMenu.unity
     guid: 44697f3357f152c4baebee74e8ab9c07
   - enabled: 1
     path: Assets/Scenes/Puzzle Levels/Levels (FInal)/Easy1Final.unity

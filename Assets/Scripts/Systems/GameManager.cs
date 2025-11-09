@@ -13,6 +13,8 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager Instance;
+    
     private readonly string MainMenuSceneName = "MainMenu";
     
     [SerializeField] private bool startPlayerInactive;
@@ -64,6 +66,15 @@ public class GameManager : MonoBehaviour
         "Bubble5Final"
     };
 
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+    }
     private void Start()
     {
         if (isMenu) return;

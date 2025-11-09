@@ -26,6 +26,11 @@ public class SaveData
         
         _levelData[levelIndex] = inLevelSaveData;
     }
+
+    public LevelSaveData GetDataForLevel(int levelIndex)
+    {
+        return _levelData[levelIndex];
+    }
 }
 
 [System.Serializable]

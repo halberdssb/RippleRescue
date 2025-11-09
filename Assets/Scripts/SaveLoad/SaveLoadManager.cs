@@ -30,8 +30,19 @@ public class SaveLoadManager : MonoBehaviour
         if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
+            return;
         }
         Instance = this;
+    }
+
+    private void Start()
+    {
+        LevelLoadButton[] levelLoadButtons = FindObjectsByType<LevelLoadButton>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+
+        foreach (var levelLoadButton in levelLoadButtons)
+        {
+            levelLoadButton.LoadLevelData();
+        }
     }
 
     private string GetSaveFilePath()

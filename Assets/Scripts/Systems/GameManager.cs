@@ -121,6 +121,7 @@ public class GameManager : MonoBehaviour
         FadeCanvasGroup(startScreen, false, () =>
         {
             waterFillSound.Play();
+            waterFillSound.DOFade(1, 0.5f);
             WaterDrain.Instance.FillUpBathtub(() =>
             {
                 FadeCanvasGroup(playerHUD, true, () =>

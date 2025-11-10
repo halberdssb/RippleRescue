@@ -37,7 +37,10 @@ public class Lock : MonoBehaviour, ICollisionEvent
             // If player has key, turn off key and lock and keep player moving
             if (playerInventory.TryGetItemTypeFromInventory(out Key key, keyPairingType))
             {
-                key.gameObject.SetActive(false);
+                key.gameObject.transform.DOScale(Vector3.zero, 0.5f).SetEase(Ease.InBounce).onComplete += () =>
+                {
+                    key.gameObject.SetActive(false);
+                };
                 
                 // turn off lock and tween away
                 DisableAndHideLock();

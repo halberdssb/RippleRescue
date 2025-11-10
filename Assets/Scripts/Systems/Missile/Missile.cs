@@ -83,8 +83,12 @@ public class Missile : MonoBehaviour
     // turns off art and collision for missile
     private void DisableMissile()
     {
-        art.SetActive(false);
+        _rb.linearVelocity = Vector3.zero;
         _collider.enabled = false;
+        transform.DOScale(Vector3.zero, 0.5f).SetEase(Ease.InBounce).onComplete += () =>
+        {
+            art.SetActive(false);
+        };
     }
 
     // start movement by player if player collides

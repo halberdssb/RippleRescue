@@ -25,6 +25,7 @@ public class Squid : MonoBehaviour
     [Space] [SerializeField] private float playerSlowedSpeed;
 
     private SphereCollider collider;
+    private Tween moveTween;
     
     private int _lastMovePositionIndex;
     private int _moveDirection; // 1 is forward, -1 is backward
@@ -38,6 +39,7 @@ public class Squid : MonoBehaviour
     {
         _moveDirection = 1;
         WaterDrain.Instance.OnWaterStartDraining += TweenToNextPointOnPath;
+        WaterDrain.Instance.OnWaterDrained += () => moveTween.Kill(false);
     }
 
     // tweens along path to next point
@@ -48,7 +50,7 @@ public class Squid : MonoBehaviour
 
         // start moving to next point
         float tweenTime = distanceVectorToDestination.magnitude / moveSpeed;
-        Tween moveTween = transform.DOMove(destination, tweenTime).SetEase(Ease.Linear);
+        moveTween = transform.DOMove(destination, tweenTime).SetEase(Ease.Linear);
         
         // look at destination
         transform.forward = distanceVectorToDestination.normalized;
@@ -101,8 +103,11 @@ public class Squid : MonoBehaviour
     // disables collider and art
     private void DisableSquid()
     {
-        art.SetActive(false);
         collider.enabled = false;
+        art.transform.DOScale(Vector3.zero, 0.5f).SetEase(Ease.InBounce).onComplete += () =>
+        {
+            art.SetActive(false);
+        };
     }
 
     // draw path between all movement points

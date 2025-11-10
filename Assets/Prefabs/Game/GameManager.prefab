@@ -86,6 +86,11 @@ MonoBehaviour:
   endScreen: {fileID: 9066580334503674187}
   playerLineDrawer: {fileID: 0}
   resultsText: {fileID: 5352434732567312339}
+  duckCollectionImages:
+  - {fileID: 3668389875223252650}
+  - {fileID: 4533469982993321544}
+  - {fileID: 7862015893403847087}
+  duckCollectedImage: {fileID: 21300000, guid: 41e95c0422f703e41a94f2a63932a3a7, type: 3}
   music: {fileID: 8302332152732055491}
   waterDrainSound: {fileID: 3772924193469264535}
   audioMixer: {fileID: 0}
@@ -2032,11 +2037,33 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dd402cff338c75a42b144d408ef5584e, type: 3}
+--- !u!114 &3668389875223252650 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7238908023783089845, guid: dd402cff338c75a42b144d408ef5584e, type: 3}
+  m_PrefabInstance: {fileID: 6241278083190663199}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
 --- !u!224 &3688638908817589726 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7326746167440797121, guid: dd402cff338c75a42b144d408ef5584e, type: 3}
   m_PrefabInstance: {fileID: 6241278083190663199}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &4533469982993321544 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7527599339816101463, guid: dd402cff338c75a42b144d408ef5584e, type: 3}
+  m_PrefabInstance: {fileID: 6241278083190663199}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
 --- !u!114 &5352434732567312339 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2079205482158989260, guid: dd402cff338c75a42b144d408ef5584e, type: 3}
@@ -2048,6 +2075,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+--- !u!114 &7862015893403847087 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4289120736163750320, guid: dd402cff338c75a42b144d408ef5584e, type: 3}
+  m_PrefabInstance: {fileID: 6241278083190663199}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
 --- !u!225 &8213561654425221600 stripped
 CanvasGroup:
   m_CorrespondingSourceObject: {fileID: 2837575181382865407, guid: dd402cff338c75a42b144d408ef5584e, type: 3}

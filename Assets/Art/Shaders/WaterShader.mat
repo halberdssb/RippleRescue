@@ -21,7 +21,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: WaterShader
-  m_Shader: {fileID: -6465566751694194690, guid: d552a2348cb03214aaccd63012fd843f, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: d577597dc772496448492c89355f27fb, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -59,6 +59,18 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _EmissionMap:
         m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _FlowTexture:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Flow_Texture:
+        m_Texture: {fileID: 2800000, guid: 05fe65b0fa1bfe54bbec623f2a488727, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _FoamTexture:
+        m_Texture: {fileID: 2800000, guid: 7f82505192eeea24785c91fa6860699d, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
@@ -105,6 +117,7 @@ Material:
     - _CellLineWeight: 0.35
     - _CellShapeShift: 1
     - _CellShiftSpeed: 0
+    - _Choppiness: 0.01
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
     - _Cull: 2
@@ -114,6 +127,13 @@ Material:
     - _DstBlend: 0
     - _DstBlendAlpha: 0
     - _EnvironmentReflections: 1
+    - _FlowSpeed: 0.01
+    - _FlowStrength: 0.0075
+    - _FoamAmount: 1
+    - _FoamCutoff: 1
+    - _FoamScale: 30
+    - _FoamSpeed: 0.012
+    - _Foam_Distance: 1.5
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
@@ -124,21 +144,30 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
+    - _RippleDensity: 7
+    - _RippleSlimness: 5
+    - _RippleSpeed: 0.5
     - _ScrollSpeed: 0.2
+    - _Size: 2
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _SrcBlendAlpha: 1
     - _Surface: 0
+    - _Transparency: 0.1
+    - _WaveSpeed: 0.1
     - _WorkflowMode: 1
     - _XRMotionVectorsPass: 1
     - _ZWrite: 1
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _DarkFoamColor: {r: 0.029369889, g: 0.09691218, b: 0.5660378, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _RippleColor: {r: 0.7971698, g: 0.95468146, b: 1, a: 1}
+    - _FoamColor: {r: 1, g: 1, b: 1, a: 1}
+    - _LightFoamColor: {r: 1, g: 1, b: 1, a: 1}
+    - _RippleColor: {r: 0.8726415, g: 0.9706096, b: 1, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _Tiling: {r: 4, g: 4, b: 0, a: 0}
     - _WaterColor: {r: 0.4481132, g: 0.7841509, b: 1, a: 1}

@@ -224,7 +224,6 @@ public class GameManager : MonoBehaviour
     public void UpdateMusicVolume(float volume)
     {
         audioMixer.SetFloat("musicVolume", volume);    
-
     }
     
     // adjusts the audio mixer master slider

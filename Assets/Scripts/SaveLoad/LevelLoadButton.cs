@@ -12,6 +12,7 @@ public class LevelLoadButton : MonoBehaviour
     [Space]
     [SerializeField] private Sprite collectedDuckImage;
     [SerializeField] private Sprite uncollectedDuckImage;
+    [SerializeField] private GameObject lockImage;
     
     [Space, SerializeField]
     private Button button;
@@ -43,9 +44,13 @@ public class LevelLoadButton : MonoBehaviour
         if (levelIndex >= 0)
         {
             LevelSaveData previousLevelData = SaveLoadManager.Instance.SaveData.GetDataForLevel(levelIndex - 1);
+
+            if (levelIndex <= 1) return;
+            
             if (!previousLevelData.levelCompleted)
             {
                 button.interactable = false;
+                lockImage.SetActive(true);
             }
         }
     }

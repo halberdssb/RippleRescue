@@ -19,7 +19,7 @@ public class SaveLoadManager : MonoBehaviour
         if (File.Exists(GetSaveFilePath()))
         {
             SaveData = JsonUtility.FromJson<SaveData>(File.ReadAllText(GetSaveFilePath()));
-            Debug.Log("Game loaded");
+            Debug.Log("Game loaded: " + SaveData.GetDataForLevel(1).levelCompleted);
         }
         else
         {

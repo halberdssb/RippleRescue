@@ -56,6 +56,7 @@ public class WaterDrain : MonoBehaviour
         _startDrainYPosition = transform.position.y;
         _endDrainYPosition = waterPlaneEndPosition.position.y;
         
+        OnWaterDrained += () => GameManager.Instance?.SaveLevelToSaveData();
 
         InstantDrainWater();
     }

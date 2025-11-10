@@ -296,7 +296,49 @@ PlayerSettings:
   AndroidAppBundleSizeToValidate: 150
   AndroidReportGooglePlayAppDependencies: 1
   androidSymbolsSizeThreshold: 800
-  m_BuildTargetIcons: []
+  m_BuildTargetIcons:
+  - m_BuildTarget: Standalone
+    m_Icons:
+    - serializedVersion: 2
+      m_Icon: {fileID: 2800000, guid: 41e95c0422f703e41a94f2a63932a3a7, type: 3}
+      m_Width: 1024
+      m_Height: 1024
+      m_Kind: 0
+    - serializedVersion: 2
+      m_Icon: {fileID: 2800000, guid: 41e95c0422f703e41a94f2a63932a3a7, type: 3}
+      m_Width: 512
+      m_Height: 512
+      m_Kind: 0
+    - serializedVersion: 2
+      m_Icon: {fileID: 2800000, guid: 41e95c0422f703e41a94f2a63932a3a7, type: 3}
+      m_Width: 256
+      m_Height: 256
+      m_Kind: 0
+    - serializedVersion: 2
+      m_Icon: {fileID: 2800000, guid: 41e95c0422f703e41a94f2a63932a3a7, type: 3}
+      m_Width: 128
+      m_Height: 128
+      m_Kind: 0
+    - serializedVersion: 2
+      m_Icon: {fileID: 2800000, guid: 41e95c0422f703e41a94f2a63932a3a7, type: 3}
+      m_Width: 64
+      m_Height: 64
+      m_Kind: 0
+    - serializedVersion: 2
+      m_Icon: {fileID: 2800000, guid: 41e95c0422f703e41a94f2a63932a3a7, type: 3}
+      m_Width: 48
+      m_Height: 48
+      m_Kind: 0
+    - serializedVersion: 2
+      m_Icon: {fileID: 2800000, guid: 41e95c0422f703e41a94f2a63932a3a7, type: 3}
+      m_Width: 32
+      m_Height: 32
+      m_Kind: 0
+    - serializedVersion: 2
+      m_Icon: {fileID: 2800000, guid: 41e95c0422f703e41a94f2a63932a3a7, type: 3}
+      m_Width: 16
+      m_Height: 16
+      m_Kind: 0
   m_BuildTargetPlatformIcons:
   - m_BuildTarget: iPhone
     m_Icons:
@@ -458,43 +500,43 @@ PlayerSettings:
       m_Kind: 0
       m_SubKind: 
     - m_Textures:
-      - {fileID: 2800000, guid: 85c42c55cea8ec2429ed17f4f94e2f81, type: 3}
-      - {fileID: 2800000, guid: 85c42c55cea8ec2429ed17f4f94e2f81, type: 3}
+      - {fileID: 2800000, guid: 6e6d20905728c8d47abdf5f1b4d09481, type: 3}
+      - {fileID: 2800000, guid: 6e6d20905728c8d47abdf5f1b4d09481, type: 3}
       m_Width: 432
       m_Height: 432
       m_Kind: 2
       m_SubKind: 
     - m_Textures:
-      - {fileID: 2800000, guid: 85c42c55cea8ec2429ed17f4f94e2f81, type: 3}
-      - {fileID: 2800000, guid: 85c42c55cea8ec2429ed17f4f94e2f81, type: 3}
+      - {fileID: 2800000, guid: 6e6d20905728c8d47abdf5f1b4d09481, type: 3}
+      - {fileID: 2800000, guid: 6e6d20905728c8d47abdf5f1b4d09481, type: 3}
       m_Width: 324
       m_Height: 324
       m_Kind: 2
       m_SubKind: 
     - m_Textures:
-      - {fileID: 2800000, guid: 85c42c55cea8ec2429ed17f4f94e2f81, type: 3}
-      - {fileID: 2800000, guid: 85c42c55cea8ec2429ed17f4f94e2f81, type: 3}
+      - {fileID: 2800000, guid: 6e6d20905728c8d47abdf5f1b4d09481, type: 3}
+      - {fileID: 2800000, guid: 6e6d20905728c8d47abdf5f1b4d09481, type: 3}
       m_Width: 216
       m_Height: 216
       m_Kind: 2
       m_SubKind: 
     - m_Textures:
-      - {fileID: 2800000, guid: 85c42c55cea8ec2429ed17f4f94e2f81, type: 3}
-      - {fileID: 2800000, guid: 85c42c55cea8ec2429ed17f4f94e2f81, type: 3}
+      - {fileID: 2800000, guid: 6e6d20905728c8d47abdf5f1b4d09481, type: 3}
+      - {fileID: 2800000, guid: 6e6d20905728c8d47abdf5f1b4d09481, type: 3}
       m_Width: 162
       m_Height: 162
       m_Kind: 2
       m_SubKind: 
     - m_Textures:
-      - {fileID: 2800000, guid: 85c42c55cea8ec2429ed17f4f94e2f81, type: 3}
-      - {fileID: 2800000, guid: 85c42c55cea8ec2429ed17f4f94e2f81, type: 3}
+      - {fileID: 2800000, guid: 6e6d20905728c8d47abdf5f1b4d09481, type: 3}
+      - {fileID: 2800000, guid: 6e6d20905728c8d47abdf5f1b4d09481, type: 3}
       m_Width: 108
       m_Height: 108
       m_Kind: 2
       m_SubKind: 
     - m_Textures:
-      - {fileID: 2800000, guid: 85c42c55cea8ec2429ed17f4f94e2f81, type: 3}
-      - {fileID: 2800000, guid: 85c42c55cea8ec2429ed17f4f94e2f81, type: 3}
+      - {fileID: 2800000, guid: 6e6d20905728c8d47abdf5f1b4d09481, type: 3}
+      - {fileID: 2800000, guid: 6e6d20905728c8d47abdf5f1b4d09481, type: 3}
       m_Width: 81
       m_Height: 81
       m_Kind: 2

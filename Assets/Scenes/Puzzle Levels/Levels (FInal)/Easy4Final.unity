@@ -1304,6 +1304,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5406820c62c6b734fb2b176216b7ce6a, type: 3}
+--- !u!1 &1117978178 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7128867158417946017, guid: 5406820c62c6b734fb2b176216b7ce6a, type: 3}
+  m_PrefabInstance: {fileID: 1117978177}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1223326034
 GameObject:
   m_ObjectHideFlags: 0
@@ -1359,7 +1364,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WaterDrain
   DrainTime: 5.3
   waterPlaneEndPosition: {fileID: 422460521}
-  drainVFX: {fileID: 7128867158417946017, guid: 5406820c62c6b734fb2b176216b7ce6a, type: 3}
+  drainVFX: {fileID: 1117978178}
 --- !u!1001 &1326561043
 PrefabInstance:
   m_ObjectHideFlags: 0

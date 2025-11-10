@@ -539,7 +539,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WaterDrain
   DrainTime: 5.2
   waterPlaneEndPosition: {fileID: 268336726}
-  drainVFX: {fileID: 7128867158417946017, guid: 5406820c62c6b734fb2b176216b7ce6a, type: 3}
+  drainVFX: {fileID: 1360639977}
 --- !u!1 &513602679
 GameObject:
   m_ObjectHideFlags: 0
@@ -1825,6 +1825,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5406820c62c6b734fb2b176216b7ce6a, type: 3}
+--- !u!1 &1360639977 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7128867158417946017, guid: 5406820c62c6b734fb2b176216b7ce6a, type: 3}
+  m_PrefabInstance: {fileID: 1360639976}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1462923250 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 88837025806272692, guid: 57c655e4f5b6ab54eb7f1f02531c4606, type: 3}

@@ -33,24 +33,28 @@ public class LevelLoadButton : MonoBehaviour
         }
         
         // update collected icons based on save data
-        LevelSaveData thisLevelsSaveData = SaveLoadManager.Instance.SaveData.GetDataForLevel(levelIndex);
-        Debug.Log("leveldata loaded", this);
+        LevelSaveData thisLevelsSaveData = SaveLoadManager.Instance.SaveData.GetDataForLevel(levelIndex - 1);
+
+        Debug.Log("this level: " + levelIndex + ", ducks collected: " + thisLevelsSaveData.numDucksCollected);
         for (int i = 0; i < thisLevelsSaveData.numDucksCollected; i++)
         {
             SetDuckImage(i, true);
         }
         
         // check if previous level is beaten - level not available if not
-        if (levelIndex >= 0)
+        if (levelIndex > 1)
         {
-            LevelSaveData previousLevelData = SaveLoadManager.Instance.SaveData.GetDataForLevel(levelIndex - 1);
-
-            if (levelIndex <= 1) return;
+            LevelSaveData previousLevelData = SaveLoadManager.Instance.SaveData.GetDataForLevel(levelIndex - 2);
             
             if (!previousLevelData.levelCompleted)
             {
                 button.interactable = false;
                 lockImage.SetActive(true);
+            }
+            else
+            {
+                button.interactable = true;
+                lockImage.SetActive(false);
             }
         }
     }

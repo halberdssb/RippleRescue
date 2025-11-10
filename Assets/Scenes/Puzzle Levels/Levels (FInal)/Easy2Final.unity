@@ -537,7 +537,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a970b1f9827969b4391bec1e6992a357, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaterDrain
-  DrainTime: 5
+  DrainTime: 5.2
   waterPlaneEndPosition: {fileID: 268336726}
 --- !u!1 &513602679
 GameObject:

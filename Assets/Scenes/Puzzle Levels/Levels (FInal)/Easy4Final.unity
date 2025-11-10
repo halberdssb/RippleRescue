@@ -1300,7 +1300,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a970b1f9827969b4391bec1e6992a357, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaterDrain
-  DrainTime: 5
+  DrainTime: 5.3
   waterPlaneEndPosition: {fileID: 422460521}
 --- !u!1001 &1326561043
 PrefabInstance:
@@ -1953,7 +1953,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7006728517138308276, guid: 7dbe492f1d0087a41818f19aa21ac282, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.197
+      value: -3.97
       objectReference: {fileID: 0}
     - target: {fileID: 7006728517138308276, guid: 7dbe492f1d0087a41818f19aa21ac282, type: 3}
       propertyPath: m_LocalPosition.z

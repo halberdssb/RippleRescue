@@ -532,6 +532,7 @@ MonoBehaviour:
   - {fileID: 1588035523981782543}
   collectedDuckImage: {fileID: 21300000, guid: 41e95c0422f703e41a94f2a63932a3a7, type: 3}
   uncollectedDuckImage: {fileID: 21300000, guid: ada98aa5b604c744b9763bd481d0c8b9, type: 3}
+  lockImage: {fileID: 7545542871786296642}
   button: {fileID: 6001786587802252304}
 --- !u!1 &3886623618993990105
 GameObject:

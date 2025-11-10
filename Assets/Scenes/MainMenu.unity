@@ -6102,10 +6102,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -4780072770720950627, guid: f33faaa6c7de98949a6d8a4b0416629b, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 4f1ef37ae953c484bbc5d5e4049147e5, type: 2}
     - target: {fileID: 919132149155446097, guid: f33faaa6c7de98949a6d8a4b0416629b, type: 3}
       propertyPath: m_Name
       value: TopHat
       objectReference: {fileID: 0}
+    - target: {fileID: 4253280567622488715, guid: f33faaa6c7de98949a6d8a4b0416629b, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 4f1ef37ae953c484bbc5d5e4049147e5, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -8279,6 +8287,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 89.528
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: d5ffb283f91f75f48867a780b039ea39, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: f96821bbefeea864b9b418af4b8615ac, type: 2}
     - target: {fileID: 919132149155446097, guid: d5ffb283f91f75f48867a780b039ea39, type: 3}
       propertyPath: m_Name
       value: BathTub
@@ -13889,6 +13901,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90.678
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: eb0310f07dddc7640a46d36948828d79, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: f96821bbefeea864b9b418af4b8615ac, type: 2}
     - target: {fileID: 919132149155446097, guid: eb0310f07dddc7640a46d36948828d79, type: 3}
       propertyPath: m_Name
       value: Faucet

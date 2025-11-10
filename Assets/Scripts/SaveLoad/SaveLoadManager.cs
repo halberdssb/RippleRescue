@@ -4,6 +4,8 @@ using UnityEngine;
 public class SaveLoadManager : MonoBehaviour
 {
     public static SaveLoadManager Instance;
+
+    public bool playIntroCutscene = true;
     
     private readonly string SaveFileName = "SaveData.txt";
     

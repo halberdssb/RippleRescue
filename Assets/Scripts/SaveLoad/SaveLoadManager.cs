@@ -1,5 +1,6 @@
 using System.IO;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SaveLoadManager : MonoBehaviour
 {
@@ -24,6 +25,8 @@ public class SaveLoadManager : MonoBehaviour
         {
             SaveData = new SaveData();
         }
+
+        SceneManager.sceneLoaded += UpdateLevelButtons;
     }
 
     private void Awake()
@@ -37,16 +40,19 @@ public class SaveLoadManager : MonoBehaviour
         Instance = this;
     }
 
-    private void Start()
+    private void UpdateLevelButtons(Scene scene, LoadSceneMode mode)
     {
-        LevelLoadButton[] levelLoadButtons = FindObjectsByType<LevelLoadButton>(FindObjectsInactive.Include, FindObjectsSortMode.None);
-
-        foreach (var levelLoadButton in levelLoadButtons)
+        if (scene.name == "MainMenu")
         {
-            levelLoadButton.LoadLevelData();
+            LevelLoadButton[] levelLoadButtons = FindObjectsByType<LevelLoadButton>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+
+            foreach (var levelLoadButton in levelLoadButtons)
+            {
+                levelLoadButton.LoadLevelData();
+            }    
         }
     }
-
+    
     private string GetSaveFilePath()
     {
         return System.IO.Path.Combine(Application.persistentDataPath, SaveFileName);

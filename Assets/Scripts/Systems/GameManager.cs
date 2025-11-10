@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 /*
  * Handles game start and end states
@@ -26,6 +27,12 @@ public class GameManager : MonoBehaviour
     [SerializeField] private CanvasGroup endScreen;
     [SerializeField] private LineDrawer playerLineDrawer;
     [SerializeField] private TextMeshProUGUI resultsText;
+    
+    [Space]
+    [SerializeField] private Image[] duckCollectionImages;
+    [SerializeField] private Sprite duckCollectedImage;
+    
+    [Space]
     [SerializeField] private AudioSource music;
     [SerializeField] private AudioSource waterDrainSound;
     [SerializeField] private AudioMixer audioMixer;
@@ -159,23 +166,28 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log("game done!");
         }
-        UpdateResultsText();
+        UpdateResultsScreen();
     }
 
     // Fades out game hud and fades in end screen
     public void EndGame()
     {
-        UpdateResultsText();
+        UpdateResultsScreen();
         playerLineDrawer.SetLineDrawerActive(false);
         FadeCanvasGroup(playerHUD, false, () =>
             FadeCanvasGroup(endScreen, true));
     }
     
     // Updates the results text with player's score
-    private void UpdateResultsText()
+    private void UpdateResultsScreen()
     {
-        string results = "Collected " + numCollectiblesCollected + " out of " + levelCollectibles.Length + " collectibles!";
-        resultsText.text = results;
+        for (int i = 0; i < numCollectiblesCollected; i++)
+        {
+            duckCollectionImages[i].sprite = duckCollectedImage;
+        }
+        
+        //string results = "Collected " + numCollectiblesCollected + " out of " + levelCollectibles.Length + " collectibles!";
+        //resultsText.text = results;
     }
     
     // Reloads the scene for game restart

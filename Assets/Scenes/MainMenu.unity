@@ -2393,6 +2393,7 @@ GameObject:
   - component: {fileID: 330585547}
   - component: {fileID: 330585548}
   - component: {fileID: 330585549}
+  - component: {fileID: 330585550}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2560,7 +2561,7 @@ PlayableDirector:
   m_Enabled: 1
   serializedVersion: 3
   m_PlayableAsset: {fileID: 11400000, guid: 7e65e3e22796f85498374250c1b16bac, type: 2}
-  m_InitialState: 1
+  m_InitialState: 0
   m_WrapMode: 2
   m_DirectorUpdateMode: 1
   m_InitialTime: 0
@@ -2582,6 +2583,19 @@ PlayableDirector:
     - f42ecd9602e5cbd4dad0ea7e6b81a92a: {fileID: 861526590}
     - 7760a1cc31f3f214ba0fe5e0e3879e8c: {fileID: 0}
     - 4102fb5498babff42b6519077d1b099d: {fileID: 762350979}
+--- !u!114 &330585550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 330585543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9060e181cf1b03e4281b502d8f66d0d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::IntroCutscene
+  director: {fileID: 330585549}
 --- !u!1 &332319630
 GameObject:
   m_ObjectHideFlags: 0

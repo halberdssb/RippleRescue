@@ -28,6 +28,8 @@ public class WaterDrain : MonoBehaviour
     [Tooltip("The end position that the water plane will tween down to - only Y position is used.")]
     private Transform waterPlaneEndPosition;
 
+    [Space] [SerializeField] private GameObject drainVFX;
+    
     private bool _waterDraining;
     private Tween _waterTween;
     private float _startDrainYPosition;
@@ -48,8 +50,12 @@ public class WaterDrain : MonoBehaviour
     }
     void Start()
     {
+        drainVFX.SetActive(false);
+        OnWaterStartDraining += () => drainVFX.SetActive(true);
+        
         _startDrainYPosition = transform.position.y;
         _endDrainYPosition = waterPlaneEndPosition.position.y;
+        
 
         InstantDrainWater();
     }

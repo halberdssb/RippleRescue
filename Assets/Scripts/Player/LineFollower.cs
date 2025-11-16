@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 
@@ -27,6 +28,9 @@ public class LineFollower : MonoBehaviour
     private Vector3[] _currentLinePoints;
     private int _nextPointIndex;
 
+    private List<RaceCheckpoint> _hitCheckpoints = new List<RaceCheckpoint>();
+    private int _numLapsCompleted;
+
     private void Start()
     {
         _lineDrawer = GetComponent<LineDrawer>();
@@ -37,6 +41,13 @@ public class LineFollower : MonoBehaviour
             WaterDrain.Instance.OnWaterStartDraining += PlayerMoveAlongLine;
             WaterDrain.Instance.OnWaterDrained -= () => WaterDrain.Instance.OnWaterStartDraining -= PlayerMoveAlongLine;
             WaterDrain.Instance.OnWaterDrained += StopFollowingLine;
+        }
+        else
+        {
+            if (_lineDrawer != null)
+            {
+                OnFinishedFollowingLine += () => _lineDrawer.ResetLine();
+            }
         }
     }
 
@@ -117,9 +128,32 @@ public class LineFollower : MonoBehaviour
             // stop movement
             if (stopMovement)
             {
-                collisionStopSound.Play();
+                if (collisionStopSound != null)
+                {
+                    collisionStopSound.Play();
+                }
                 StopFollowingLine();
             }
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("Trigger enter");
+        // check for race checkpoint
+        if (other.gameObject.TryGetComponent(out RaceCheckpoint checkpoint))
+        {
+            Debug.Log("Checkpoint hit!");
+            if (!_hitCheckpoints.Contains(checkpoint))
+            {
+                Debug.Log("Checkpoint added!");
+                _hitCheckpoints.Add(checkpoint);
+            }
+        }
+        // check for race finish line
+        else if (other.gameObject.TryGetComponent(out RaceFinishLine finishLine))
+        {
+            GameManager.Instance.OnLapCompleted(this);
         }
     }
     
@@ -135,5 +169,30 @@ public class LineFollower : MonoBehaviour
     public void SetLineFollowSpeed(float speed)
     {
         MoveSpeed = speed;
+    }
+    
+    // Gets number of hit checkpoints
+    public int GetNumberOfHitCheckpoints()
+    {
+        return _hitCheckpoints.Count;
+    }
+    
+    // Resets hit checkpoints
+    public void ResetHitCheckpointsList()
+    {
+        _hitCheckpoints.Clear();
+    }
+    
+    // increments laps completed
+    public void CompleteLap()
+    {
+        _numLapsCompleted++;
+        ResetHitCheckpointsList();
+    }
+    
+    // returns number of completed laps
+    public int GetNumberOfCompletedLaps()
+    {
+        return _numLapsCompleted;
     }
 }

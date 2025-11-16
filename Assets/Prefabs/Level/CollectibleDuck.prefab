@@ -10,15 +10,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: b302819ee0fac1f4183d2391d669c309, type: 3}
       propertyPath: m_LocalScale.x
-      value: 20
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b302819ee0fac1f4183d2391d669c309, type: 3}
       propertyPath: m_LocalScale.y
-      value: 20
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b302819ee0fac1f4183d2391d669c309, type: 3}
       propertyPath: m_LocalScale.z
-      value: 20
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b302819ee0fac1f4183d2391d669c309, type: 3}
       propertyPath: m_LocalPosition.x
@@ -121,7 +121,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.019394811
+  m_Radius: 0.1939481
   m_Center: {x: 0, y: -0.000000059604645, z: 0.00000011920929}
 --- !u!54 &5620500798455850124
 Rigidbody:
@@ -162,6 +162,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1662172a122b75f40830bc2b3c53c304, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Collectible
+  pairingType: 0
 --- !u!82 &9181728417202955276
 AudioSource:
   m_ObjectHideFlags: 0

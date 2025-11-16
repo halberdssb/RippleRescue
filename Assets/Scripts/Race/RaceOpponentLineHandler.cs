@@ -27,6 +27,11 @@ public class RaceOpponentLineHandler : MonoBehaviour
         // get line components
         _lineFollower = GetComponent<LineFollower>();
 
+        StartMovement();
+    }
+
+    public void StartMovement()
+    {
         transform.position = pathData.linePoints[0];
         _lineFollower.MoveAlongLineToEnd(pathData.linePoints);
     }

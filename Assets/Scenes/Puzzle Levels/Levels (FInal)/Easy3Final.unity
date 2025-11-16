@@ -392,15 +392,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: b302819ee0fac1f4183d2391d669c309, type: 3}
       propertyPath: m_LocalScale.x
-      value: 21.549173
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b302819ee0fac1f4183d2391d669c309, type: 3}
       propertyPath: m_LocalScale.y
-      value: 21.549171
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b302819ee0fac1f4183d2391d669c309, type: 3}
       propertyPath: m_LocalScale.z
-      value: 21.549173
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b302819ee0fac1f4183d2391d669c309, type: 3}
       propertyPath: m_LocalPosition.x
@@ -441,6 +441,10 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: b302819ee0fac1f4183d2391d669c309, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: b302819ee0fac1f4183d2391d669c309, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: b302819ee0fac1f4183d2391d669c309, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
@@ -540,7 +544,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.01939481
+  m_Radius: 0.19
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!82 &442669931
 AudioSource:
@@ -740,15 +744,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: b302819ee0fac1f4183d2391d669c309, type: 3}
       propertyPath: m_LocalScale.x
-      value: 21.549175
+      value: 1.9999999
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b302819ee0fac1f4183d2391d669c309, type: 3}
       propertyPath: m_LocalScale.y
-      value: 21.549171
+      value: 1.9999999
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b302819ee0fac1f4183d2391d669c309, type: 3}
       propertyPath: m_LocalScale.z
-      value: 21.549175
+      value: 1.9999999
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b302819ee0fac1f4183d2391d669c309, type: 3}
       propertyPath: m_LocalPosition.x
@@ -789,6 +793,10 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: b302819ee0fac1f4183d2391d669c309, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -0.235
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: b302819ee0fac1f4183d2391d669c309, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: b302819ee0fac1f4183d2391d669c309, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
@@ -888,7 +896,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.01939481
+  m_Radius: 0.19
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!82 &629956613
 AudioSource:
@@ -2059,15 +2067,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: b302819ee0fac1f4183d2391d669c309, type: 3}
       propertyPath: m_LocalScale.x
-      value: 21.549175
+      value: 1.9999999
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b302819ee0fac1f4183d2391d669c309, type: 3}
       propertyPath: m_LocalScale.y
-      value: 21.549171
+      value: 1.9999999
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b302819ee0fac1f4183d2391d669c309, type: 3}
       propertyPath: m_LocalScale.z
-      value: 21.549175
+      value: 1.9999999
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b302819ee0fac1f4183d2391d669c309, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2108,6 +2116,10 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: b302819ee0fac1f4183d2391d669c309, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: b302819ee0fac1f4183d2391d669c309, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: b302819ee0fac1f4183d2391d669c309, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
@@ -2207,7 +2219,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.019394811
+  m_Radius: 0.19
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!82 &2103352922
 AudioSource:

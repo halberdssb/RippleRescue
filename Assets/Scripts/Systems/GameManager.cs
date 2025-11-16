@@ -73,7 +73,7 @@ public class GameManager : MonoBehaviour
         "Bubble4Final",
         "Bubble5Final"
     };
-
+    
     public enum GameMode
     {
         Puzzle,
@@ -83,6 +83,14 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     public GameMode gameMode = GameMode.Puzzle;
 
+    [Header("Race Mode Variables")]
+    private int _totalNumRaceCheckpoints;
+
+    [SerializeField] 
+    private int numLaps = 3;
+    
+    private RaceCheckpoint[] _raceCheckpoints;
+    
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -124,6 +132,12 @@ public class GameManager : MonoBehaviour
             // Subscribe water drain sounds to water drain
             WaterDrain.Instance.OnWaterStartDraining += () => waterDrainSound.Play();
             WaterDrain.Instance.OnWaterDrained += () => waterDrainSound.DOFade(0, 0.5f);   
+        }
+        // race mode
+        else
+        {
+            _raceCheckpoints = FindObjectsByType<RaceCheckpoint>(FindObjectsSortMode.None);
+            _totalNumRaceCheckpoints = _raceCheckpoints.Length;
         }
     }
     // Transitions from start screen to gameplay
@@ -281,5 +295,22 @@ public class GameManager : MonoBehaviour
         LevelSaveData levelSaveData = new LevelSaveData(true, numCollectiblesCollected);
         SaveLoadManager.Instance.SaveData.SaveDataForLevel(levelSaveIndex, levelSaveData);
         SaveLoadManager.Instance.SaveGame();
+    }
+    
+    // checks if lap/race was completed by player when hitting finish line
+    public void OnLapCompleted(LineFollower racer)
+    {
+        // check if lap was completed (all checkpoints hit)
+        if (racer.GetNumberOfHitCheckpoints() >= _totalNumRaceCheckpoints)
+        {
+            racer.CompleteLap();
+            Debug.Log("Lap " + racer.GetNumberOfCompletedLaps() + " completed!");
+        }
+        
+        // check if race over
+        if (racer.GetNumberOfCompletedLaps() >= numLaps)
+        {
+            Debug.Log("Race won!");
+        }
     }
 }

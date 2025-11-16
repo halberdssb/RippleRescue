@@ -28,6 +28,9 @@ public class LineDrawer : MonoBehaviour
     [SerializeField]
     private float distanceBetweenPoints;
 
+    [SerializeField] 
+    private float raceModeDrawDistance;
+
     private float maxLineDistance;
 
     [SerializeField]
@@ -76,8 +79,7 @@ public class LineDrawer : MonoBehaviour
         }
         else
         {
-            // temp - delete
-            maxLineDistance = 1000;
+            maxLineDistance = raceModeDrawDistance;
         }
     }
 

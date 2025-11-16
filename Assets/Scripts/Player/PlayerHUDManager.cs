@@ -7,7 +7,10 @@ public class PlayerHUDManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        WaterDrain.Instance.OnWaterStartDraining += () => SetPlayerHUDInteractivity(false);
+        if (GameManager.Instance.gameMode == GameManager.GameMode.Puzzle)
+        {
+            WaterDrain.Instance.OnWaterStartDraining += () => SetPlayerHUDInteractivity(false);
+        }
     }
 
    // sets interactivity for all canvas groups in the player hud 

@@ -74,6 +74,15 @@ public class GameManager : MonoBehaviour
         "Bubble5Final"
     };
 
+    public enum GameMode
+    {
+        Puzzle,
+        Race
+    }
+    [Space]
+    [SerializeField]
+    public GameMode gameMode = GameMode.Puzzle;
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -106,13 +115,16 @@ public class GameManager : MonoBehaviour
         SetCanvasGroupActive(startScreen, true);
         SetCanvasGroupActive(playerHUD, false);
         SetCanvasGroupActive(endScreen, false);
+
+        if (gameMode == GameMode.Puzzle)
+        {
+            // Subscribe to player end follow line state
+            WaterDrain.Instance.OnWaterDrained += EndGame;
         
-        // Subscribe to player end follow line state
-        WaterDrain.Instance.OnWaterDrained += EndGame;
-        
-        // Subscribe water drain sounds to water drain
-        WaterDrain.Instance.OnWaterStartDraining += () => waterDrainSound.Play();
-        WaterDrain.Instance.OnWaterDrained += () => waterDrainSound.DOFade(0, 0.5f);
+            // Subscribe water drain sounds to water drain
+            WaterDrain.Instance.OnWaterStartDraining += () => waterDrainSound.Play();
+            WaterDrain.Instance.OnWaterDrained += () => waterDrainSound.DOFade(0, 0.5f);   
+        }
     }
     // Transitions from start screen to gameplay
     public void StartGame()
@@ -120,14 +132,23 @@ public class GameManager : MonoBehaviour
         // Fade out start screen canvas and fade in main screen
         FadeCanvasGroup(startScreen, false, () =>
         {
-            waterFillSound.Play();
-            waterFillSound.DOFade(1, 0.5f);
-            WaterDrain.Instance.FillUpBathtub(() =>
+            if (WaterDrain.Instance)
+            {
+                waterFillSound.Play();
+                waterFillSound.DOFade(1, 0.5f);
+                
+                WaterDrain.Instance.FillUpBathtub(() =>
+                {
+                    FadeCanvasGroup(playerHUD, true, () =>
+                        playerLineDrawer.SetLineDrawerActive(true));
+                    waterFillSound.DOFade(0, 0.5f);
+                });
+            }
+            else
             {
                 FadeCanvasGroup(playerHUD, true, () =>
                     playerLineDrawer.SetLineDrawerActive(true));
-                waterFillSound.DOFade(0, 0.5f);
-            });
+            }
         });
             
         

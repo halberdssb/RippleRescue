@@ -1,5 +1,10 @@
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 /*
  *  Draws lines on water plane for player to follow
@@ -65,7 +70,15 @@ public class LineDrawer : MonoBehaviour
         // set to position on default because first point will always be on top of player
         _worldSpaceTouchLastFrame = transform.position;
 
-        maxLineDistance = _lineFollower.MoveSpeed * WaterDrain.Instance.DrainTime;
+        if (GameManager.Instance.gameMode == GameManager.GameMode.Puzzle)
+        {
+            maxLineDistance = _lineFollower.MoveSpeed * WaterDrain.Instance.DrainTime;
+        }
+        else
+        {
+            // temp - delete
+            maxLineDistance = 1000;
+        }
     }
 
     void Update()
@@ -265,4 +278,20 @@ public class LineDrawer : MonoBehaviour
         _worldSpaceTouchDeltaMagnitude = 0;
         _worldSpaceTouchLastFrame = Vector3.zero;
     }
+    
+#if UNITY_EDITOR
+    // used for saving drawn path to data object to create AI path in race courses
+    [ContextMenu("Save Drawn Path to Data Object")]
+    private void SaveLineToDataObject()
+    {
+        // create scriptable object
+        RaceOpponentPathData pathData = ScriptableObject.CreateInstance<RaceOpponentPathData>();
+        pathData.linePoints = LinePoints;
+        
+        // get file name
+        string dataObjectName = SceneManager.GetActiveScene().name + "_AIRacePath";
+        AssetDatabase.CreateAsset(pathData, "Assets/Data/AI Race Paths/" + dataObjectName + ".asset");
+        AssetDatabase.SaveAssets();
+    }
+#endif
 }

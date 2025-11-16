@@ -32,22 +32,36 @@ public class LineFollower : MonoBehaviour
         _lineDrawer = GetComponent<LineDrawer>();
 
         // subscribe movement to water drain start
-        WaterDrain.Instance.OnWaterStartDraining += MoveAlongLineToEnd;
-        WaterDrain.Instance.OnWaterDrained -= () => WaterDrain.Instance.OnWaterStartDraining -= MoveAlongLineToEnd;
-        WaterDrain.Instance.OnWaterDrained += StopFollowingLine;
+        if (GameManager.Instance.gameMode == GameManager.GameMode.Puzzle)
+        {
+            WaterDrain.Instance.OnWaterStartDraining += PlayerMoveAlongLine;
+            WaterDrain.Instance.OnWaterDrained -= () => WaterDrain.Instance.OnWaterStartDraining -= PlayerMoveAlongLine;
+            WaterDrain.Instance.OnWaterDrained += StopFollowingLine;
+        }
     }
-    
-    // Begins set movement along a line through all points
-    public void MoveAlongLineToEnd()
+
+    public void PlayerMoveAlongLine()
     {
         if (_lineDrawer.LinePoints.Length <= 0) return;
         
+        MoveAlongLineToEnd(_lineDrawer.LinePoints);
+    }
+    
+    // Begins set movement along a line through all points
+    public void MoveAlongLineToEnd(Vector3[] inLinePoints)
+    {
         // get line points from line drawer
-        _currentLinePoints = _lineDrawer.LinePoints;
+        _currentLinePoints = inLinePoints;
         
         // start moving along points
         _nextPointIndex = 1;
         MoveToNextPointLooping(_currentLinePoints[_nextPointIndex]);
+    }
+    
+    // Sets the current points of the line
+    public void SetCurrentLinePoints(Vector3[] linePoints)
+    {
+        _currentLinePoints = linePoints;
     }
 
     // Starts a tween to move toward the next point at a constant speed and cues movement to next point on tween complete
@@ -66,7 +80,10 @@ public class LineFollower : MonoBehaviour
             _moveTween.onComplete += () =>
             {
                 // remove previous point from drawn line and update visuals
-                _lineDrawer.RemoveLinePointAtIndex(0);
+                if (_lineDrawer != null)
+                {
+                    _lineDrawer.RemoveLinePointAtIndex(0);
+                }
 
                 // begin movement to next point on line
                 _nextPointIndex++;

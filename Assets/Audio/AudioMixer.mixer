@@ -53,6 +53,39 @@ AudioMixerGroupController:
   m_Mute: 0
   m_Solo: 0
   m_BypassEffects: 0
+--- !u!243 &-4888112393630856512
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: RaceMusic
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: 7ed552038ecbf5a46ad9675581785b3f
+  m_Children: []
+  m_Volume: c63ba774ac02c474392336541fa469a9
+  m_Pitch: 37537de6155722c46a402fb1b221a09a
+  m_Send: 00000000000000000000000000000000
+  m_Effects:
+  - {fileID: -3973402480000153252}
+  m_UserColorIndex: 0
+  m_Mute: 0
+  m_Solo: 0
+  m_BypassEffects: 0
+--- !u!244 &-3973402480000153252
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: c5ba2062a015e0c4d8de299309cc6cf9
+  m_EffectName: Attenuation
+  m_MixLevel: 28c546840e024c24f991352f4a1b3daf
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
 --- !u!243 &-3609166039953338761
 AudioMixerGroupController:
   m_ObjectHideFlags: 0
@@ -153,6 +186,7 @@ AudioMixerController:
     - 078a3dce00420854599a16ebe0f52e55
     - 4dc694a1daf6edf48903be3d32e0b97e
     - 3fe10749be7b31849a2c1a0387f4766e
+    - 7ed552038ecbf5a46ad9675581785b3f
     name: View
   m_CurrentViewIndex: 0
   m_TargetSnapshot: {fileID: 24500006}
@@ -201,6 +235,7 @@ AudioMixerSnapshotController:
   m_AudioMixer: {fileID: 24100000}
   m_SnapshotID: 4833f466b7b2b2644a5b28e08488e4ca
   m_FloatValues:
+    c63ba774ac02c474392336541fa469a9: -19.928473
     f995b12592d55e84186f33d129723c2b: -6.133707
     827572487d5c37147b393c1e8a70eb37: -12.498478
     a3690e092222c3d4b9cefe6afec3a071: -19.928473
@@ -216,7 +251,8 @@ AudioMixerGroupController:
   m_Name: Music
   m_AudioMixer: {fileID: 24100000}
   m_GroupID: e5a0600435307614aac61220dc9c2e59
-  m_Children: []
+  m_Children:
+  - {fileID: -4888112393630856512}
   m_Volume: a3690e092222c3d4b9cefe6afec3a071
   m_Pitch: a946fcdc2b912c549a465ed3795335ed
   m_Send: 00000000000000000000000000000000

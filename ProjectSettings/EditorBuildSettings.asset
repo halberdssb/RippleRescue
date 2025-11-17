@@ -89,6 +89,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Puzzle Levels/Levels (FInal)/Bubble5Final.unity
     guid: 5f7089eae1ee1de49a2126efad99e032
+  - enabled: 1
+    path: Assets/Scenes/Race Courses/Race_1_Final.unity
+    guid: 92a0b14424bda5e48b8eff538add329a
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

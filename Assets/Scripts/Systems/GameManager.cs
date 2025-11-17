@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private CanvasGroup raceStartScreen;
     [SerializeField] private CanvasGroup raceResultsScreen;
     [SerializeField] private CanvasGroup lapCounterScreen;
+    [SerializeField] private CanvasGroup racePlayerIndicator;
     [SerializeField] private TextMeshProUGUI raceCountdownText;
     [SerializeField] private TextMeshProUGUI raceResultsText;
     [SerializeField] private TextMeshProUGUI lapCounterText;
@@ -82,6 +83,11 @@ public class GameManager : MonoBehaviour
         "Bubble3Final",
         "Bubble4Final",
         "Bubble5Final"
+    };
+
+    public static string[] raceLevelNames = new string[]
+    {
+        "Race_1_Final"
     };
     
     public enum GameMode
@@ -176,9 +182,14 @@ public class GameManager : MonoBehaviour
             {
                 UpdateLapCounterText();
                 raceCountdownText.text = "";
-                FadeCanvasGroup(raceStartScreen, true, () => 
+                FadeCanvasGroup(raceStartScreen, true, () =>
+                {
+                    FadeCanvasGroup(racePlayerIndicator, true);
+                    
                     StartCoroutine(StartRaceCountdown(() =>
                         {
+                            FadeCanvasGroup(racePlayerIndicator, false);
+
                             FadeCanvasGroup(playerHUD, true, () =>
                             {
                                 // enable player movement
@@ -198,7 +209,8 @@ public class GameManager : MonoBehaviour
 
                             FadeCanvasGroup(lapCounterScreen, true);
                         }
-                        )));
+                    ));
+                });
             }
         });
     }
@@ -283,6 +295,12 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(puzzleLevelNames[puzzleNumber - 1]);
     }
     
+    // Loads a specified racecourse scene
+    public void LoadRaceCourseNumber(int courseNumber)
+    {
+        SceneManager.LoadScene(raceLevelNames[courseNumber - 1]);
+    }
+    
     // loads title screen
     public void QuitToTitle()
     {
@@ -347,7 +365,11 @@ public class GameManager : MonoBehaviour
             if (racer.gameObject.CompareTag("Player"))
             {
                 lapCompleteSound.Play();
-                UpdateLapCounterText(racer);
+
+                if (racer.GetNumberOfCompletedLaps() < numLaps)
+                {
+                    UpdateLapCounterText(racer);
+                }
             }
         }
         
@@ -422,11 +444,11 @@ public class GameManager : MonoBehaviour
     // update lap count text
     private void UpdateLapCounterText(LineFollower racer)
     {
-        lapCounterText.text = "Lap " + racer.GetNumberOfCompletedLaps() + " of " + numLaps;
+        lapCounterText.text = "Lap " + (racer.GetNumberOfCompletedLaps() + 1) + " of " + numLaps;
     }
     
     private void UpdateLapCounterText()
     {
-        lapCounterText.text = "Lap 0 of " + numLaps;
+        lapCounterText.text = "Lap 1 of " + numLaps;
     }
 }

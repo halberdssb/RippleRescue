@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
@@ -25,6 +26,12 @@ public class GameManager : MonoBehaviour
     [SerializeField] private CanvasGroup playerHUD;
     [SerializeField] private CanvasGroup startScreen;
     [SerializeField] private CanvasGroup endScreen;
+    [SerializeField] private CanvasGroup raceStartScreen;
+    [SerializeField] private CanvasGroup raceResultsScreen;
+    [SerializeField] private CanvasGroup lapCounterScreen;
+    [SerializeField] private TextMeshProUGUI raceCountdownText;
+    [SerializeField] private TextMeshProUGUI raceResultsText;
+    [SerializeField] private TextMeshProUGUI lapCounterText;
     [SerializeField] private LineDrawer playerLineDrawer;
     [SerializeField] private TextMeshProUGUI resultsText;
     
@@ -36,6 +43,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private AudioSource music;
     [SerializeField] private AudioSource waterDrainSound;
     [SerializeField] private AudioSource waterFillSound;
+    [SerializeField] private AudioSource raceCountdownSound;
+    [SerializeField] private AudioSource raceWinSound;
+    [SerializeField] private AudioSource lapCompleteSound;
     private AudioMixer audioMixer;
 
     private LineFollower playerLineFollower;
@@ -88,6 +98,8 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] 
     private int numLaps = 3;
+
+    private bool _raceOver;
     
     private RaceCheckpoint[] _raceCheckpoints;
     
@@ -127,7 +139,7 @@ public class GameManager : MonoBehaviour
         if (gameMode == GameMode.Puzzle)
         {
             // Subscribe to player end follow line state
-            WaterDrain.Instance.OnWaterDrained += EndGame;
+            WaterDrain.Instance.OnWaterDrained += EndPuzzleGame;
         
             // Subscribe water drain sounds to water drain
             WaterDrain.Instance.OnWaterStartDraining += () => waterDrainSound.Play();
@@ -146,7 +158,7 @@ public class GameManager : MonoBehaviour
         // Fade out start screen canvas and fade in main screen
         FadeCanvasGroup(startScreen, false, () =>
         {
-            if (WaterDrain.Instance)
+            if (gameMode == GameMode.Puzzle)
             {
                 waterFillSound.Play();
                 waterFillSound.DOFade(1, 0.5f);
@@ -155,19 +167,40 @@ public class GameManager : MonoBehaviour
                 {
                     FadeCanvasGroup(playerHUD, true, () =>
                         playerLineDrawer.SetLineDrawerActive(true));
+                    // start music
+                    music.Play();
                     waterFillSound.DOFade(0, 0.5f);
                 });
             }
             else
             {
-                FadeCanvasGroup(playerHUD, true, () =>
-                    playerLineDrawer.SetLineDrawerActive(true));
+                UpdateLapCounterText();
+                raceCountdownText.text = "";
+                FadeCanvasGroup(raceStartScreen, true, () => 
+                    StartCoroutine(StartRaceCountdown(() =>
+                        {
+                            FadeCanvasGroup(playerHUD, true, () =>
+                            {
+                                // enable player movement
+                                playerLineDrawer.SetLineDrawerActive(true);
+
+                                // start movement for enemy racer(s)
+                                var opponentRacers =
+                                    FindObjectsByType<RaceOpponentLineHandler>(FindObjectsSortMode.None);
+                                foreach (var opponent in opponentRacers)
+                                {
+                                    opponent.StartMovement();
+                                }
+
+                                // start music
+                                music.Play();
+                            });
+
+                            FadeCanvasGroup(lapCounterScreen, true);
+                        }
+                        )));
             }
         });
-            
-        
-        // start music
-        music.Play();
     }
 
     // Fades a canvas group in or out
@@ -211,20 +244,23 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log("game done!");
         }
-        UpdateResultsScreen();
+        UpdatePuzzleResultsScreen();
     }
 
     // Fades out game hud and fades in end screen
-    public void EndGame()
+    public void EndPuzzleGame()
     {
-        UpdateResultsScreen();
-        playerLineDrawer.SetLineDrawerActive(false);
-        FadeCanvasGroup(playerHUD, false, () =>
-            FadeCanvasGroup(endScreen, true));
+        if (gameMode == GameMode.Puzzle)
+        {
+            UpdatePuzzleResultsScreen();
+            playerLineDrawer.SetLineDrawerActive(false);
+            FadeCanvasGroup(playerHUD, false, () =>
+                FadeCanvasGroup(endScreen, true));
+        }
     }
     
     // Updates the results text with player's score
-    private void UpdateResultsScreen()
+    private void UpdatePuzzleResultsScreen()
     {
         for (int i = 0; i < numCollectiblesCollected; i++)
         {
@@ -291,10 +327,14 @@ public class GameManager : MonoBehaviour
             }
         }
         
-        // save to save data
-        LevelSaveData levelSaveData = new LevelSaveData(true, numCollectiblesCollected);
-        SaveLoadManager.Instance.SaveData.SaveDataForLevel(levelSaveIndex, levelSaveData);
-        SaveLoadManager.Instance.SaveGame();
+        // save to save data if puzzle level
+        if (gameMode == GameMode.Puzzle)
+        {
+            LevelSaveData levelSaveData = new LevelSaveData(true, numCollectiblesCollected);
+            SaveLoadManager.Instance.SaveData.SaveDataForLevel(levelSaveIndex, levelSaveData);
+            SaveLoadManager.Instance.SaveGame();
+        }
+
     }
     
     // checks if lap/race was completed by player when hitting finish line
@@ -304,13 +344,89 @@ public class GameManager : MonoBehaviour
         if (racer.GetNumberOfHitCheckpoints() >= _totalNumRaceCheckpoints)
         {
             racer.CompleteLap();
-            Debug.Log("Lap " + racer.GetNumberOfCompletedLaps() + " completed!");
+            if (racer.gameObject.CompareTag("Player"))
+            {
+                lapCompleteSound.Play();
+                UpdateLapCounterText(racer);
+            }
         }
         
         // check if race over
-        if (racer.GetNumberOfCompletedLaps() >= numLaps)
+        if (racer.GetNumberOfCompletedLaps() >= numLaps && !_raceOver)
         {
-            Debug.Log("Race won!");
+            bool didPlayerWinRace = racer.gameObject.CompareTag("Player");
+            
+            EndRaceGame(didPlayerWinRace);
         }
+    }
+    
+    // ends race and fades in results ui
+    private void EndRaceGame(bool didPlayerWinRace)
+    {
+        _raceOver = true;
+        
+        music.DOFade(0, 0.5f);
+        
+        UpdateRaceResultsScreen(didPlayerWinRace);
+        playerLineDrawer.SetLineDrawerActive(false);
+        FadeCanvasGroup(playerHUD, false, () =>
+            FadeCanvasGroup(raceResultsScreen, true, () =>
+                {
+                    if (didPlayerWinRace) raceWinSound.Play();
+                }));
+    }
+    
+    // race start UI coroutine
+    private IEnumerator StartRaceCountdown(Action onComplete)
+    {
+        float timeBetweenClicks = 0.56f;
+        
+        raceCountdownSound.Play();
+
+        float initialSoundBufferTime = 0.3f;
+        yield return new WaitForSeconds(initialSoundBufferTime);
+        
+        raceCountdownText.text = "3";
+        
+        yield return new WaitForSeconds(timeBetweenClicks);
+        
+        raceCountdownText.text = "2";
+        
+        yield return new WaitForSeconds(timeBetweenClicks);
+        
+        raceCountdownText.text = "1";
+        
+        yield return new WaitForSeconds(timeBetweenClicks);
+        
+        raceCountdownText.text = "<color=\"green\">GO!!!";
+
+        float timeBeforeStart = 0.5f;
+        yield return new WaitForSeconds(timeBeforeStart);
+        
+        FadeCanvasGroup(raceStartScreen, false, onComplete);
+    }
+    
+    // Updates race results screen
+    private void UpdateRaceResultsScreen(bool didPlayerWinRace)
+    {
+        if (didPlayerWinRace)
+        {
+            raceResultsText.text = "<color=\"green\">You won!";
+        }
+        else
+        {
+            raceResultsText.text = "<color=\"red\">You lost...";
+        }
+    }
+    
+    // update lap count text
+    private void UpdateLapCounterText(LineFollower racer)
+    {
+        lapCounterText.text = "Lap " + racer.GetNumberOfCompletedLaps() + " of " + numLaps;
+    }
+    
+    private void UpdateLapCounterText()
+    {
+        lapCounterText.text = "Lap 0 of " + numLaps;
     }
 }

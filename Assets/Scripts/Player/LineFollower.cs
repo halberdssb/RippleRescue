@@ -78,6 +78,9 @@ public class LineFollower : MonoBehaviour
     // Starts a tween to move toward the next point at a constant speed and cues movement to next point on tween complete
     private void MoveToNextPointLooping(Vector3 destination)
     {
+        // ensure destination is at same y level as follower
+        destination.y = transform.position.y;
+        
         Vector3 distanceVectorToDestination = destination - transform.position;
         
         // start moving to next point
@@ -139,14 +142,11 @@ public class LineFollower : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Trigger enter");
         // check for race checkpoint
         if (other.gameObject.TryGetComponent(out RaceCheckpoint checkpoint))
         {
-            Debug.Log("Checkpoint hit!");
             if (!_hitCheckpoints.Contains(checkpoint))
             {
-                Debug.Log("Checkpoint added!");
                 _hitCheckpoints.Add(checkpoint);
             }
         }

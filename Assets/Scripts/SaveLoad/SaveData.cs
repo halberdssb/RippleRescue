@@ -31,6 +31,14 @@ public class SaveData
     {
         return _levelData[levelIndex];
     }
+
+    public void UnlockAllLevels()
+    {
+        for (int i = 0; i < _levelData.Length; i++)
+        {
+            _levelData[i].levelCompleted = true;
+        }
+    }
 }
 
 [System.Serializable]

@@ -63,4 +63,10 @@ public class SaveLoadManager : MonoBehaviour
         File.WriteAllText(GetSaveFilePath(), JsonUtility.ToJson(SaveData));
         Debug.Log(GetSaveFilePath());
     }
+
+    [ContextMenu("Unlock All Levels")]
+    private void UnlockAllLevels()
+    {
+        foreach (var level in SaveData.GetDataForLevel())
+    }
 }
